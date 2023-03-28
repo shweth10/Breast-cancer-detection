@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Doctor Register</title>
     <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+    <link rel="stylesheet" href="\css\loginstyles.css">
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 offset-md-4" style="margin-top: 45px">
+            <div class="login" style="margin-top: -350px;>
                  <h4>Doctor Register</h4><hr>
                  <form action="{{ route('doctor.create') }}" method="post">
                     @if (Session::get('success'))
@@ -26,27 +27,27 @@
 
                     @csrf
                      <div class="form-group">
-                         <label for="name">Name</label>
+                         <label for="name"style="color: white; font-weight: bold;">Name</label>
                          <input type="text" class="form-control" name="name" placeholder="Enter full name" value="{{ old('name') }}">
                          <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email"style="color: white; font-weight: bold;">Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}">
                         <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                     </div>
                     <div class="form-group">
-                        <label for="hospital">Hospital</label>
+                        <label for="hospital"style="color: white; font-weight: bold;">Hospital</label>
                         <input type="text" class="form-control" name="hospital" placeholder="Enter hospital name" value="{{ old('hospital') }}">
                         <span class="text-danger">@error('hospital'){{ $message }}@enderror</span>
                     </div>
                      <div class="form-group">
-                         <label for="password">Password</label>
+                         <label for="password"style="color: white; font-weight: bold;">Password</label>
                          <input type="password" class="form-control" name="password" placeholder="Enter password" value="{{ old('password') }}">
                          <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
-                        <label for="cpassword">Confirm Password</label>
+                        <label for="cpassword"style="color: white; font-weight: bold;">Confirm Password</label>
                         <input type="password" class="form-control" name="cpassword" placeholder="Enter confirm password" value="{{ old('cpassword') }}">
                         <span class="text-danger">@error('cpassword'){{ $message }}@enderror</span>
                     </div>
