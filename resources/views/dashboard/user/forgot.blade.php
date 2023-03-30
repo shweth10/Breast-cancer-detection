@@ -26,7 +26,7 @@
                     </div>
                 @endif
                     @csrf
-                    <p>
+                    <p style="color: white; font-weight: bold;">
                         Enter your email address and we will send you a link to reset your password.
                     </p>
                       <div class="form-group">
