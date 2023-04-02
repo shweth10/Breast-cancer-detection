@@ -11,7 +11,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="login" style="margin-top: -350px;">
+            <div class="login" style="margin-top: -250px;">
                   <h1>Forgot password</h1><hr>
                   <form action="{{ route('user.forgot.password.link') }}" method="post" autocomplete="off">
                     @if (Session::get('fail'))

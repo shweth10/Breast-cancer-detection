@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="login" style="margin-top: -350px;>
+            <div class="login" style="margin-top: -250px;>
                  <h4>Doctor Register</h4><hr>
                  <form action="{{ route('doctor.create') }}" method="post">
                     @if (Session::get('success'))

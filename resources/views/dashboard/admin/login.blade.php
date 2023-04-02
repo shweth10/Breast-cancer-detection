@@ -11,7 +11,7 @@
 <body style="background-color:#c8d9e8 !important">
     <div class="container">
         <div class="row">
-            <div class="login" style="margin-top: -350px;">
+            <div class="login" style="margin-top: -250px;">
                  <h1>Admin Login</h1><hr>
                  <form action="{{ route('admin.check') }}" method="post">
                     @if (Session::get('fail'))

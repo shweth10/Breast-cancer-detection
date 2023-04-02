@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="login" style="margin-top: -350px;">
+            <div class="login" style="margin-top: -250px;">
                  <h1>Reset Password</h1><hr>
                  <form action="{{ route('doctor.reset.password') }}" method="post">
                     @if (Session::get('fail'))
