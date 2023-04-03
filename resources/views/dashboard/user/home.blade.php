@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-md-12 mt-3">
-        <h4>Insurance Company dashboard</h4>
+        <h4>Insurance Company Dashboard</h4>
     </div>
 </div>
 

@@ -35,7 +35,7 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-square"></i> Account
+          <i class="far fa-user"></i> Account
           
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
@@ -71,7 +71,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-dark-olive">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="{{ asset('AdminLTE-3.1.0/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <i class="nav-icon fas fa-home"></i>
       <span class="brand-text font-weight-light">Welcome Page</span>
     </a>
 
@@ -123,6 +123,7 @@
 
         </ul>
       </nav>
+      
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
