@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="login" style="margin-top: -250px;">
-                  <h1>User Register</h1><hr>
+                  <h1 >Register Insurance Company</h1><hr>
                   <form action="{{ route('user.create') }}" method="post" autocomplete="off">
                     @if (Session::get('success'))
                          <div class="alert alert-success">
@@ -28,12 +28,12 @@
 
                     @csrf
                       <div class="form-group">
-                          <label for="name" style="color: white; font-weight: bold;">Name</label>
+                          <label for="name" style="color: white; font-weight: bold;">Insurance Company Name</label>
                           <input type="text" class="form-control" name="name" placeholder="Enter full name" value="{{ old('name') }}">
                           <span class="text-danger">@error('name'){{ $message }} @enderror</span>
                       </div>
                       <div class="form-group">
-                        <label for="email"style="color: white; font-weight: bold;">Email</label>
+                        <label for="email"style="color: white; font-weight: bold;">Company Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}">
                         <span class="text-danger">@error('email'){{ $message }} @enderror</span>
                     </div>

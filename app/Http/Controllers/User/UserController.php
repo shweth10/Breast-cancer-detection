@@ -12,6 +12,14 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.home')->with('success', 'User has been deleted');
+    }
+    
     function create(Request $request){
           //Validate Inputs
           $request->validate([
@@ -37,7 +45,7 @@ class UserController extends Controller
           ]);
 
           $message = 'Dear <b>'.$request->name.'</b>';
-          $message.= 'Thanks for signing up, we just need you to verify your email address to complete setting up your account.';
+          $message.= ' Thanks for signing up, we just need you to verify your email address to complete setting up your account.';
 
           $mail_data = [
               'recipient'=>$request->email,

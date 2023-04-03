@@ -38,7 +38,7 @@ class DoctorController extends Controller
           ]);
 
           $message = 'Dear <b>'.$request->name.'</b>';
-          $message.= 'Thanks for signing up, we need you to verify your email address to complete setting up your account';
+          $message.= ' Thanks for signing up, we need you to verify your email address to complete setting up your account';
 
           $mail_data = [
               'recipient'=>$request->email,

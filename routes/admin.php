@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\UserController;
 
 Route::prefix('admin')->name('admin.')->group(function(){
 
@@ -20,6 +21,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::view('/','dashboard.admin.home')->name('home');
         Route::view('/home','dashboard.admin.home')->name('home');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     });
 
 });
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
