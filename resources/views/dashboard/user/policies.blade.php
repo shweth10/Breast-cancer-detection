@@ -25,12 +25,15 @@
             <td>{{ $policy->premium_amount }}</td>
             <td>{{ $policy->policy_duration }}</td>
             <td>
-                            <form action="{{ route('policy.destroy', $policy->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
+                <a href="{{ route('policy.edit', $policy->id) }}" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+                <form action="{{ route('policy.destroy', $policy->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
@@ -55,24 +58,25 @@
                     <form method="POST" action="{{ route('policy.store') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="policy_type">Policy Type</label>
-                            <input type="text" name="policy_type" class="form-control" id="policy_type">
+                        <label for="policy_type">Policy Type</label>
+                        <input type="text" name="policy_type" class="form-control" id="policy_type" required>
                         </div>
                         <div class="form-group">
-                            <label for="coverage_amount">Coverage Amount($)</label>
-                            <input type="number" name="coverage_amount" class="form-control" id="coverage_amount">
+                        <label for="coverage_amount">Coverage Amount($)</label>
+                        <input type="number" name="coverage_amount" class="form-control" id="coverage_amount" required>
                         </div>
                         <div class="form-group">
-                            <label for="premium_amount">Premium Amount($)</label>
-                            <input type="number" name="premium_amount" class="form-control" id="premium_amount">
+                        <label for="premium_amount">Premium Amount($)</label>
+                        <input type="number" name="premium_amount" class="form-control" id="premium_amount" required>
                         </div>
                         <div class="form-group">
-                            <label for="policy_duration">Policy Duration(Years)</label>
-                            <input type="number" name="policy_duration" class="form-control" id="policy_duration">
+                        <label for="policy_duration">Policy Duration(Years)</label>
+                        <input type="number" name="policy_duration" class="form-control" id="policy_duration" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>

@@ -12,6 +12,25 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 class PolicyController extends Controller
 {
+    public function update(Request $request, $id)
+    {
+        $policy = Policy::findOrFail($id);
+        $policy->policy_type = $request->input('policy_type');
+        $policy->coverage_amount = $request->input('coverage_amount');
+        $policy->premium_amount = $request->input('premium_amount');
+        $policy->policy_duration = $request->input('policy_duration');
+        $policy->save();
+
+        return redirect()->route('user.policies')->with('success', 'policy has been updated');
+    }
+
+    public function edit($id)
+    {
+        $policy = Policy::findOrFail($id);
+
+        return view('dashboard.user.edit-policy', compact('policy'));
+    }
+
     public function getPoliciesForCurrentUser()
     {
         $user = Auth::user();
