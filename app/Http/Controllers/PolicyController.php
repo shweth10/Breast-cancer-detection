@@ -19,6 +19,9 @@ class PolicyController extends Controller
         $policy->coverage_amount = $request->input('coverage_amount');
         $policy->premium_amount = $request->input('premium_amount');
         $policy->policy_duration = $request->input('policy_duration');
+        $policy->coverage_information = $request->input('coverage_information');
+        $policy->payment_period = $request->input('payment_period');
+
         $policy->save();
 
         return redirect()->route('user.policies')->with('success', 'policy has been updated');
@@ -46,6 +49,9 @@ class PolicyController extends Controller
         $policy->coverage_amount = $request->input('coverage_amount');
         $policy->premium_amount = $request->input('premium_amount');
         $policy->policy_duration = $request->input('policy_duration');
+        $policy->coverage_information = $request->input('coverage_information');
+        $policy->payment_period = $request->input('payment_period');
+
         $policy->Insurer_id = auth()->user()->id;
         $policy->save();
 

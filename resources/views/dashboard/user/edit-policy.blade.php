@@ -73,12 +73,25 @@
 	        <input type="text" name="policy_type" class="form-control" id="policy_type" value="{{ $policy->policy_type }}" required>
 	    </div>
 	    <div class="form-group">
+		<div class="form-group">
+	        <label for="coverage_information">Coverage Information</label>
+	        <input type="text" name="coverage_information" class="form-control" id="coverage_information" value="{{ $policy->coverage_information }}" required>
+	    </div>
+	    <div class="form-group">
 	        <label for="coverage_amount">Coverage Amount($)</label>
 	        <input type="number" name="coverage_amount" class="form-control" id="coverage_amount" value="{{ $policy->coverage_amount }}" required>
 	    </div>
 	    <div class="form-group">
 	        <label for="premium_amount">Premium Amount($)</label>
 	        <input type="number" name="premium_amount" class="form-control" id="premium_amount" value="{{ $policy->premium_amount }}" required>
+	    </div>
+		<div class="form-group">
+	        <label for="payment_period">Payment Period</label>
+	        <select name="payment_period" class="form-control" id="payment_period" value="{{ $policy->payment_period }}" required>
+				<option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="annually">Annually</option>
+            </select>
 	    </div>
 	    <div class="form-group">
 	        <label for="policy_duration">Policy Duration(Years)</label>

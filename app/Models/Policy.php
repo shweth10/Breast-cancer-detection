@@ -19,8 +19,10 @@ class Policy extends Model
     protected $fillable = [
         'Insurer_id',
         'policy_type',
+        'coverage_information',
         'coverage_amount',
         'premium_amount',
+        'payment_period',
         'policy_duration',
     ];
 
