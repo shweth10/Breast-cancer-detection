@@ -1,6 +1,6 @@
   <li class="nav-item">
     <a href="{{ route('user.home') }}" class="nav-link">
-      <i class="nav-icon fas fa-book"></i>
+      <i class="nav-icon fas fa-clock"></i>
       <p>
         Dashboard
       </p>
@@ -9,22 +9,21 @@
 
   <li class="nav-item">
     <a href="{{ route('user.policies') }}" class="nav-link">
-      <i class="nav-icon fa-file"></i>
+      <i class="nav-icon fas fa-file"></i>
       <p>
-        Add Policy
+        Add Policy Type
       </p>
     </a>
   </li>
 
   <li class="nav-item">
-    <a href="{{ route('user.home') }}" class="nav-link">
+    <a href="{{ route('user.clients') }}" class="nav-link">
       <i class="nav-icon fas fa-user-plus"></i>
       <p>
         Add Client
       </p>
     </a>
   </li>
-
   <li class="nav-item">
       {{-- <a href="#" class="nav-link">Logout</a> --}}
     <a class="nav-link" href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p></a>
