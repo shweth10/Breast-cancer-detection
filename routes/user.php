@@ -26,3 +26,5 @@ Route::prefix('user')->name('user.')->group(function(){
     });
 
 });
+
+Route::post('/policy', [App\Http\Controllers\PolicyController::class, 'store'])->name('policy.store');
