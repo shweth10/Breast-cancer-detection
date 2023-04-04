@@ -24,12 +24,19 @@
             <td>{{ $policy->coverage_amount }}</td>
             <td>{{ $policy->premium_amount }}</td>
             <td>{{ $policy->policy_duration }}</td>
+            <td>
+                            <form action="{{ route('policy.destroy', $policy->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
         </tr>
         @endforeach
     </tbody>
 </table>
 <div class="text-center">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addPolicyModal">Add Policy</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addPolicyModal">Add New Policy Type</button>
             </div>
         </div>
     </div>

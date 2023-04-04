@@ -33,4 +33,12 @@ class PolicyController extends Controller
         return redirect()->route('user.policies');
     }
 
+    public function destroy($id)
+    {
+        $policy = Policy::findOrFail($id);
+        $policy->delete();
+
+        return redirect()->route('user.policies')->with('success', 'policy has been deleted');
+    }
+
 }

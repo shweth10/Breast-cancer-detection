@@ -28,3 +28,4 @@ Route::prefix('user')->name('user.')->group(function(){
 });
 
 Route::post('/policy', [App\Http\Controllers\PolicyController::class, 'store'])->name('policy.store');
+Route::delete('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'destroy'])->name('policy.destroy');
