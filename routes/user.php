@@ -19,6 +19,7 @@ Route::prefix('user')->name('user.')->group(function(){
 
     Route::middleware(['auth:web','is_user_verify_email','PreventBackHistory'])->group(function(){
           Route::view('/','dashboard.user.home')->name('home');
+          Route::view('/policies','dashboard.user.policies')->name('policies');
           Route::view('/home','dashboard.user.home')->name('home');
           Route::post('/logout',[UserController::class,'logout'])->name('logout');
           Route::get('/add-new',[UserController::class,'add'])->name('add');

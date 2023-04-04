@@ -8,7 +8,7 @@
   </li>
 
   <li class="nav-item">
-    <a href="{{ route('user.home') }}" class="nav-link">
+    <a href="{{ route('user.policies') }}" class="nav-link">
       <i class="nav-icon fa-file"></i>
       <p>
         Add Policy

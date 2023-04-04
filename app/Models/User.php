@@ -9,6 +9,11 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function policies()
+    {
+        return $this->hasMany('App\Models\Policy', 'insurer_id');
+    }
+
     use HasFactory, Notifiable;
 
     /**

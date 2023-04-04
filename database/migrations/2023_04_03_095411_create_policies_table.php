@@ -15,6 +15,7 @@ class CreatePoliciesTable extends Migration
     {
         Schema::create('policies', function (Blueprint $table) {
             $table->id();
+            $table->integer('Insurer_id');
             $table->string('policy_type');
             $table->integer('coverage_amount');
             $table->integer('premium_amount');
