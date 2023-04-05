@@ -31,7 +31,15 @@
         </tr>
         <tr>
             <th>Policy Duration: </th>
-            <td>{{ $client->policy_duration }}</td>
+            <td>{{ $client->policy_duration }} Years</td>
+        </tr>
+        <tr>
+            <th>Coverage Amount: </th>
+            <td>${{ $client->coverage_amount }}</td>
+        </tr>
+        <tr>
+            <th>Premium To Be Paid:</th>
+            <td>${{ $client->premium_amount }}</td>
         </tr>
         <tr>
             <th>Payment Period:</th>
@@ -62,11 +70,11 @@
             <td>{{ $client->vehicle_registration }}</td>
         </tr>
         <tr>
-            <th>Created on:</th>
+            <th>Client Details Created on:</th>
             <td>{{ $client->created_at }}</td>
         </tr>
         <tr>
-            <th>Last Updated:</th>
+            <th>Client Details Last Updated:</th>
             <td>{{ $client->updated_at }}</td>
         </tr>
     </table>

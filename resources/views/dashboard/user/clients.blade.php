@@ -19,7 +19,7 @@
             <th>Phone Number</th>
             <th>Vehicle Model</th>
             <th>Vehicle Registration</th>
-            <th>Policy ID</th>
+            <th>Policy Taken</th>
 
         </tr>
     </thead>
@@ -33,7 +33,7 @@
             <td>{{ $client->phone_number }}</td>
             <td>{{ $client->vehicle_model }}</td>
             <td>{{ $client->vehicle_registration }}</td>
-            <td>{{ $client->policy_id }}</td>
+            <td>{{ $client->policy_type }}</td>
             <td>
                 <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary">Edit</a>
             </td>
