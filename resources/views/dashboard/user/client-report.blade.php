@@ -65,6 +65,10 @@
             <td>{{ $client->policy_type }}</td>
         </tr>
         <tr>
+            <th>Policy Start Date:</th>
+            <td>{{ $client->policy_start_date }}</td>
+        </tr>
+        <tr>
             <th>Policy Duration:</th>
             <td>{{ $client->policy_duration }} Years</td>
         </tr>

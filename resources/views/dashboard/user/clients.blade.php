@@ -9,17 +9,19 @@
     $clients= App\Models\Client::where('insurer_id', auth()->user()->id)->get();
     $policies=App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
     @endphp
+    
+    <h3>Client Details</h3>
     <table class="table">
     <thead>
         <tr>
-            <th>Client Name</th>
-            <th>Age</th>
-            <th>Driving License #</th>
+            <th>Name</th>
             <th>Email</th>
-            <th>Phone Number</th>
-            <th>Vehicle Model</th>
-            <th>Vehicle Registration</th>
+            <th>Contact</th>
+            <th>Vehicle#</th>
             <th>Policy Taken</th>
+            <th>Premium</th>
+            <th>Period</th>
+            <th>Starts</th>
 
         </tr>
     </thead>
@@ -27,13 +29,13 @@
         @foreach($clients as $client)
         <tr>
             <td>{{ $client->client_fname }}</td>
-            <td>{{ $client->Age }}</td>
-            <td>{{ $client->driving_license_number }}</td>
             <td>{{ $client->client_email }}</td>
             <td>{{ $client->phone_number }}</td>
-            <td>{{ $client->vehicle_model }}</td>
             <td>{{ $client->vehicle_registration }}</td>
             <td>{{ $client->policy_type }}</td>
+            <td>${{ $client->premium_amount }}</td>
+            <td>{{ $client->payment_period }}</td>
+            <td>{{ $client->policy_start_date }}</td>
             <td>
                 <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary">Edit</a>
             </td>
@@ -121,7 +123,6 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
