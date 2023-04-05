@@ -22,6 +22,22 @@
             <td>{{ $client->client_fname }}</td>
         </tr>
         <tr>
+            <th>Policy ID:</th>
+            <td>{{ $client->policy_id }}</td>
+        </tr>
+        <tr>
+            <th>Policy Type:</th>
+            <td>{{ $client->policy_type }}</td>
+        </tr>
+        <tr>
+            <th>Policy Duration: </th>
+            <td>{{ $client->policy_duration }}</td>
+        </tr>
+        <tr>
+            <th>Payment Period:</th>
+            <td>{{ $client->payment_period }}</td>
+        </tr>
+        <tr>
             <th>Age:</th>
             <td>{{ $client->Age }}</td>
         </tr>

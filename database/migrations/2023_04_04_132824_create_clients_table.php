@@ -25,6 +25,9 @@ class CreateClientsTable extends Migration
             $table->string('vehicle_registration');
             $table->unsignedBigInteger('policy_id');
             $table->foreign('policy_id')->references('id')->on('policies')->onDelete('cascade');
+            $table->string('policy_type')->nullable();
+            $table->integer('policy_duration')->nullable();
+            $table->string('payment_period')->nullable();
             $table->timestamps();
         });
     }

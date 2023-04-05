@@ -7,7 +7,7 @@
     </div>
     @php
     $clients= App\Models\Client::where('insurer_id', auth()->user()->id)->get();
-    $policies=App\Models\Policy::all();
+    $policies=App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
     @endphp
     <table class="table">
     <thead>

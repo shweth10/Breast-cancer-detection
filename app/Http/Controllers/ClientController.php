@@ -75,6 +75,8 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
+        $policy = Policy::findOrFail($request->input('policy_id'));
+
         $client = new Client();
         $client->client_fname = $request->input('client_fname');
         $client->Age = $request->input('Age');
@@ -82,7 +84,10 @@ class ClientController extends Controller
         $client->client_email = $request->input('client_email');
         $client->phone_number = $request->input('phone_number');
         $client->vehicle_model = $request->input('vehicle_model');
-        $client->policy_id = $request->policy_id;
+        $client->policy_id = $policy->id;
+        $client->policy_type = $policy->policy_type; // retrieve policy_type from policies table
+        $client->policy_duration = $policy->policy_duration; // retrieve duration from policies table
+        $client->payment_period = $policy->payment_period; // retrieve duration from policies table
         $client->vehicle_registration = $request->input('vehicle_registration');
         $client->Insurer_id = auth()->user()->id;
         
