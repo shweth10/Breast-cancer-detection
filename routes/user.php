@@ -36,4 +36,6 @@ Route::put('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'upd
 Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
 Route::get('/policies/{policy}/edit', [App\Http\Controllers\PolicyController::class, 'edit'])->name('policy.edit');
 Route::get('/clients/{client}/edit', [App\Http\Controllers\ClientController::class, 'edit'])->name('client.edit');
+Route::get('/clients/{id}/report', [App\Http\Controllers\ClientController::class, 'generateReport'])->name('client.report');
+
 

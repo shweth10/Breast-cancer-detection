@@ -10,8 +10,29 @@ use App\Models\Client;
 use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 class ClientController extends Controller
 {
+
+public function generateReport($id)
+{
+    $client = Client::findOrFail($id);
+
+    $options = new Options();
+    $options->set('defaultFont', 'Helvetica');
+
+    $pdf = new Dompdf($options);
+
+    $html = view('dashboard.user.client-report', compact('client'));
+
+    $pdf->loadHtml($html);
+    $pdf->setPaper('A4', 'portrait');
+    $pdf->render();
+
+    return $pdf->stream($client->client_fname . '-report.pdf');
+}
+
     public function update(Request $request, $id)
     {
         $client = Client::findOrFail($id);
@@ -53,8 +74,8 @@ class ClientController extends Controller
         $client->phone_number = $request->input('phone_number');
         $client->vehicle_model = $request->input('vehicle_model');
         $client->vehicle_registration = $request->input('vehicle_registration');
-
         $client->Insurer_id = auth()->user()->id;
+        
         $client->save();
 
         return redirect()->route('user.clients');

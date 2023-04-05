@@ -40,6 +40,7 @@
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
+            <td><a href="{{ route('client.report', $client->id) }}" class="btn btn-success btn-sm">Report</a></td>
         </tr>
         @endforeach
     </tbody>
