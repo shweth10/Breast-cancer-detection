@@ -45,8 +45,8 @@
     <header>
         <h1>Car Policy Hub</h1>
         <h2>Insurer: {{ auth()->user()->name }}</h2>
-        <h3>Client Report</h3>
     </header>
+    <h3 style="text-decoration: underline">Client Report:</h3>
     <table id="client-table">
         <tr>
             <th>Client ID:</th>
