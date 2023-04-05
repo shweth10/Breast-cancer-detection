@@ -33,7 +33,7 @@
             <td>{{ $client->phone_number }}</td>
             <td>{{ $client->vehicle_model }}</td>
             <td>{{ $client->vehicle_registration }}</td>
-            <td>{{ $client->policy_taken }}</td>
+            <td>{{ $client->policy_id }}</td>
             <td>
                 <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary">Edit</a>
             </td>
@@ -98,15 +98,20 @@
                         <input type="text" name="vehicle_registration" class="form-control" id="vehicle_registration" required>
                         </div>
 
-                        <div class="form-group" id="policy_taken_field">
-                            <label for="policy_taken">Policy Taken</label>
-                            <select class="form-control" id="policy_taken" name="policy_taken" required>
+                        <div class="form-group" id="policy_id_field">
+                            <label for="policy_id">Policy Taken</label>
+                            <select class="form-control" id="policy_id" name="policy_id" required>
+                                @if ($policies->isEmpty())
+                                <option value="">Policy not found, first add a policy type!</option>
+                                @else
                                 <option value="">Select Policy Type</option>
                                 @foreach($policies as $policy)
-                                <option value="{{ $policy->id }}">{{ $policy->policy_type }}</option>
+                                    <option value="{{ $policy->id }}">{{ $policy->policy_type }}</option>
                                 @endforeach
+                                @endif
                             </select>
                         </div>
+
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

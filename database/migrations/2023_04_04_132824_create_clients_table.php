@@ -23,8 +23,8 @@ class CreateClientsTable extends Migration
             $table->string('phone_number');
             $table->string('vehicle_model');
             $table->string('vehicle_registration');
-            $table->unsignedBigInteger('policy_taken');
-            $table->foreign('policy_taken')->references('id')->on('policies')->onDelete('cascade');
+            $table->unsignedBigInteger('policy_id');
+            $table->foreign('policy_id')->references('id')->on('policies')->onDelete('cascade');
             $table->timestamps();
         });
     }

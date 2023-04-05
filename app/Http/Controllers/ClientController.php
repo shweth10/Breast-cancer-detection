@@ -82,7 +82,7 @@ class ClientController extends Controller
         $client->client_email = $request->input('client_email');
         $client->phone_number = $request->input('phone_number');
         $client->vehicle_model = $request->input('vehicle_model');
-        $client->policy_taken = $request->policy_taken;
+        $client->policy_id = $request->policy_id;
         $client->vehicle_registration = $request->input('vehicle_registration');
         $client->Insurer_id = auth()->user()->id;
         
