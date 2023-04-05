@@ -7,6 +7,7 @@
     </div>
     @php
     $clients= App\Models\Client::where('insurer_id', auth()->user()->id)->get();
+    $policies=App\Models\Policy::all();
     @endphp
     <table class="table">
     <thead>
@@ -18,6 +19,8 @@
             <th>Phone Number</th>
             <th>Vehicle Model</th>
             <th>Vehicle Registration</th>
+            <th>Policy ID</th>
+
         </tr>
     </thead>
     <tbody>
@@ -30,6 +33,7 @@
             <td>{{ $client->phone_number }}</td>
             <td>{{ $client->vehicle_model }}</td>
             <td>{{ $client->vehicle_registration }}</td>
+            <td>{{ $client->policy_taken }}</td>
             <td>
                 <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary">Edit</a>
             </td>
@@ -93,6 +97,17 @@
                         <label for="vehicle_registration">Vehicle Registration</label>
                         <input type="text" name="vehicle_registration" class="form-control" id="vehicle_registration" required>
                         </div>
+
+                        <div class="form-group" id="policy_taken_field">
+                            <label for="policy_taken">Policy Taken</label>
+                            <select class="form-control" id="policy_taken" name="policy_taken" required>
+                                <option value="">Select Policy Type</option>
+                                @foreach($policies as $policy)
+                                <option value="{{ $policy->id }}">{{ $policy->policy_type }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

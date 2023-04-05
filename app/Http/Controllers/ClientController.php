@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\VerifyUser;
+use App\Models\Policy;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
@@ -15,23 +16,31 @@ use Dompdf\Options;
 class ClientController extends Controller
 {
 
-public function generateReport($id)
-{
-    $client = Client::findOrFail($id);
+    public function add()
+    {
+    $policies = Policy::all();
 
-    $options = new Options();
-    $options->set('defaultFont', 'Helvetica');
+    return view('dashboard.user.add', compact('policies'));
+    }
 
-    $pdf = new Dompdf($options);
 
-    $html = view('dashboard.user.client-report', compact('client'));
+    public function generateReport($id)
+    {
+        $client = Client::findOrFail($id);
 
-    $pdf->loadHtml($html);
-    $pdf->setPaper('A4', 'portrait');
-    $pdf->render();
+        $options = new Options();
+        $options->set('defaultFont', 'Helvetica');
 
-    return $pdf->stream($client->client_fname . '-report.pdf');
-}
+        $pdf = new Dompdf($options);
+
+        $html = view('dashboard.user.client-report', compact('client'));
+
+        $pdf->loadHtml($html);
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->render();
+
+        return $pdf->stream($client->client_fname . '-report.pdf');
+    }
 
     public function update(Request $request, $id)
     {
@@ -73,6 +82,7 @@ public function generateReport($id)
         $client->client_email = $request->input('client_email');
         $client->phone_number = $request->input('phone_number');
         $client->vehicle_model = $request->input('vehicle_model');
+        $client->policy_taken = $request->policy_taken;
         $client->vehicle_registration = $request->input('vehicle_registration');
         $client->Insurer_id = auth()->user()->id;
         

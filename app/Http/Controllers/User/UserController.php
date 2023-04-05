@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Policy;
 use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class UserController extends Controller
 {
+    public function add()
+    {
+        $policies = Policy::all();
+
+        return view('dashboard.user.add', compact('policies'));
+    }
     
     public function destroy($id)
     {
