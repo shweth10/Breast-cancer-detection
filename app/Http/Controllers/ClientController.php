@@ -75,6 +75,11 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'policy_start_date' => 'required|date_format:Y-m-d',
+        ]);
+
+        
         $policy = Policy::findOrFail($request->input('policy_id'));
 
         $client = new Client();
@@ -91,6 +96,7 @@ class ClientController extends Controller
         $client->premium_amount = $policy->premium_amount; // retrieve duration from policies table
         $client->payment_period = $policy->payment_period; // retrieve duration from policies table
         $client->vehicle_registration = $request->input('vehicle_registration');
+        $client->policy_start_date = $request->input('policy_start_date');
         $client->Insurer_id = auth()->user()->id;
         
         $client->save();

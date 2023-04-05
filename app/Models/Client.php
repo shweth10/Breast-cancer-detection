@@ -30,6 +30,7 @@ class Client extends Model
         'policy_type',
         'policy_id',
         'policy_duration',
-        'coverage_amount'
+        'coverage_amount',
+        'policy_start_date',
     ];
 }

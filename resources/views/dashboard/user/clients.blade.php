@@ -111,6 +111,12 @@
                                 @endif
                             </select>
                         </div>
+                        <div class="form-group">
+                        <label for="policy_start_date">Policy Start Date</label>
+                        <input type="text" name="policy_start_date" class="form-control" id="policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD">
+                        <div class="invalid-feedback">Please enter a valid date in the format YYYY-MM-DD</div>
+                        </div>
+
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
