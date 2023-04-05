@@ -87,6 +87,8 @@ class ClientController extends Controller
         $client->policy_id = $policy->id;
         $client->policy_type = $policy->policy_type; // retrieve policy_type from policies table
         $client->policy_duration = $policy->policy_duration; // retrieve duration from policies table
+        $client->coverage_amount = $policy->coverage_amount; // retrieve duration from policies table
+        $client->premium_amount = $policy->premium_amount; // retrieve duration from policies table
         $client->payment_period = $policy->payment_period; // retrieve duration from policies table
         $client->vehicle_registration = $request->input('vehicle_registration');
         $client->Insurer_id = auth()->user()->id;

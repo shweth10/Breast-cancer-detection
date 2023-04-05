@@ -27,6 +27,8 @@ class CreateClientsTable extends Migration
             $table->foreign('policy_id')->references('id')->on('policies')->onDelete('cascade');
             $table->string('policy_type')->nullable();
             $table->integer('policy_duration')->nullable();
+            $table->integer('premium_amount')->nullable();
+            $table->integer('coverage_amount')->nullable();
             $table->string('payment_period')->nullable();
             $table->timestamps();
         });
