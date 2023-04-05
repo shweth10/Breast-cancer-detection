@@ -51,8 +51,8 @@ class PolicyController extends Controller
         $policy->policy_duration = $request->input('policy_duration');
         $policy->coverage_information = $request->input('coverage_information');
         $policy->payment_period = $request->input('payment_period');
-
         $policy->Insurer_id = auth()->user()->id;
+        
         $policy->save();
 
         return redirect()->route('user.policies');

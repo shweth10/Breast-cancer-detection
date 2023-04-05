@@ -25,5 +25,11 @@ class Client extends Model
         'phone_number',
         'vehicle_model',
         'vehicle_registration',
+        'premium_amount',
+        'payment_period',
+        'policy_type',
+        'policy_id',
+        'policy_duration',
+        'coverage_amount'
     ];
 }

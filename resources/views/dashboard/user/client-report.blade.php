@@ -3,16 +3,51 @@
 <head>
     <meta charset="utf-8">
     <title>Client Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            text-align: center;
+        }
+        header h1, header h2 {
+            text-decoration: underline;
+        }
+        table {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #eee;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #f2f2f2;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
 </head>
 <body>
+    <p>Company Email: {{ auth()->user()->email }}</p>
+    <p>Date: <?php echo date('F j, Y'); ?></p>
     <header>
-        <p>Company Email: {{ auth()->user()->email }}</p>
-        <p>Date: <?php echo date('F j, Y'); ?></p>
-        <h1 style="text-align: center; text-decoration: underline;">Car Policy Hub</h1>
-        <h2 style="text-align: center; text-decoration: underline;">Insurer: {{ auth()->user()->name }}</h2>
-        <h3 style="text-align: center;">Client Report</h3>
+        <h1>Car Policy Hub</h1>
+        <h2>Insurer: {{ auth()->user()->name }}</h2>
+        <h3>Client Report</h3>
     </header>
-    <table id="client-table" style="margin: 0 auto; border-collapse: collapse; width: 100%; max-width: 600px; font-family: Arial, sans-serif; border: 1px solid #ccc;">
+    <table id="client-table">
         <tr>
             <th>Client ID:</th>
             <td>{{ $client->id }}</td>
@@ -30,11 +65,11 @@
             <td>{{ $client->policy_type }}</td>
         </tr>
         <tr>
-            <th>Policy Duration: </th>
+            <th>Policy Duration:</th>
             <td>{{ $client->policy_duration }} Years</td>
         </tr>
         <tr>
-            <th>Coverage Amount: </th>
+            <th>Coverage Amount:</th>
             <td>${{ $client->coverage_amount }}</td>
         </tr>
         <tr>

@@ -102,7 +102,7 @@
                             <label for="policy_id">Policy Taken</label>
                             <select class="form-control" id="policy_id" name="policy_id" required>
                                 @if ($policies->isEmpty())
-                                <option value="">Policy not found, first add a policy type!</option>
+                                <option value="">Policy not found, Add policy type first!</option>
                                 @else
                                 <option value="">Select Policy Type</option>
                                 @foreach($policies as $policy)
@@ -111,7 +111,6 @@
                                 @endif
                             </select>
                         </div>
-
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
