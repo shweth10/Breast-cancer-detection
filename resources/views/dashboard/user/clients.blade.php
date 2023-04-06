@@ -22,6 +22,7 @@
             <th>Premium</th>
             <th>Period</th>
             <th>Starts</th>
+            <th>Premium Due On</th>
 
         </tr>
     </thead>
@@ -36,6 +37,8 @@
             <td>${{ $client->premium_amount }}</td>
             <td>{{ $client->payment_period }}</td>
             <td>{{ $client->policy_start_date }}</td>
+            <td>{{ $client->premium_due_date }}</td>
+
             <td>
                 <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary">Edit</a>
             </td>

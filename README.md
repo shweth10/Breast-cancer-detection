@@ -1,10 +1,10 @@
 -----------------------------Insurance Management System-----------------------------
 
 -----------------------------Project Members-----------------------------
-                          -Shweth Maharaj: S11186310
-                          -Neeraj Ghutla
-                          -Jazbia Naem
-                          -Tushaar Sharma
+-Shweth Maharaj: S11186310
+-Neeraj Ghutla
+-Jazbia Naem
+-Tushaar Sharma
 
 -----------------------------Technologies Used-----------------------------
 -Laravel
@@ -21,7 +21,7 @@ To install the project, follow these steps:
 
 -Download the repository to your local machine.
 -Open Command Prompt and navigate to the project directory using the command cd your-project.
--Install the dependencies using "composer install" and "composer require dompdf/dompdf".
+-Install the dependencies using "composer install" and "composer require dompdf/dompdf" and "composer require nesbot/carbon".
 -Create a new file named .env in the root directory of the project by copying the contents of the .env.example file.
 -Update the .env file with your database details.
 -Run the migrations using the command "php artisan migrate".

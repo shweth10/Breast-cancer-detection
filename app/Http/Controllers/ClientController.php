@@ -98,6 +98,8 @@ class ClientController extends Controller
         $client->vehicle_registration = $request->input('vehicle_registration');
         $client->policy_start_date = $request->input('policy_start_date');
         $client->Insurer_id = auth()->user()->id;
+        $client->premium_due_date = $client->calculatePremiumDueDate();
+
         
         $client->save();
 

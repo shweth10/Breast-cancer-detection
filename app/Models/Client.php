@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Client extends Model
 {
@@ -32,5 +33,26 @@ class Client extends Model
         'policy_duration',
         'coverage_amount',
         'policy_start_date',
+        'premium_due_date',
     ];
+    public function calculatePremiumDueDate(): string
+    {
+        $period = $this->payment_period;
+        $start = Carbon::parse($this->policy_start_date);
+        
+        switch ($period) {
+            case 'monthly':
+                return $start->addMonth()->format('Y-m-d');
+                break;
+            case 'quarterly':
+                return $start->addMonths(3)->format('Y-m-d');
+                break;
+            case 'annually':
+                return $start->addMonths(12)->format('Y-m-d');
+                break;
+            default:
+                return '';
+        }
+    }
+
 }
