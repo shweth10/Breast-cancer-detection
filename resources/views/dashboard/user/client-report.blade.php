@@ -69,6 +69,10 @@
             <td>{{ $client->policy_start_date }}</td>
         </tr>
         <tr>
+            <th>Premium Due Date:</th>
+            <td>{{ $client->premium_due_date }}</td>
+        </tr>
+        <tr>
             <th>Policy Duration:</th>
             <td>{{ $client->policy_duration }} Years</td>
         </tr>
@@ -117,7 +121,7 @@
             <td>{{ $client->updated_at }}</td>
         </tr>
     </table>
-    <footer style="position: absolute; bottom: 0; width: 100%; height: 60px; background-color: #f2f2f2;">
+    <footer style="position: absolute; bottom: 0; width: 100%; height: 45px; background-color: #f2f2f2;">
         <p style="text-align: center; line-height: 40px;">Car Policy Hub © 2023. All rights reserved.</p>
     </footer>
 </body>
