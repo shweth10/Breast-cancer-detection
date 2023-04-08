@@ -3,18 +3,39 @@
 <head>
 	<title>Payments Report</title>
 	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			text-align: left;
-			padding: 8px;
-			border-bottom: 1px solid #ddd;
-		}
-		th {
-			background-color: #f2f2f2;
-		}
+		body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            text-align: center;
+        }
+        header h1, header h2 {
+            text-decoration: underline;
+        }
+        table {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #eee;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #f2f2f2;
+            text-align: center;
+            line-height: 40px;
+        }
 	</style>
 </head>
 <body>
@@ -53,5 +74,8 @@
 			@endforeach
 		</tbody>
 	</table>
+	<footer style="position: absolute; bottom: 0; width: 100%; height: 45px; background-color: #f2f2f2;">
+        <p style="text-align: center; line-height: 40px;">Car Policy Hub © 2023. All rights reserved.</p>
+    </footer>
 </body>
 </html>
