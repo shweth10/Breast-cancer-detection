@@ -17,7 +17,7 @@
         <tr>
             <th>Name</th>
             <th>Policy Taken</th>
-            <th>Premium</th>
+            <th>Payment Amount</th>
             <th>Period</th>
             <th>Last Payment Made</th>
             <th>Next Payment Due</th>
