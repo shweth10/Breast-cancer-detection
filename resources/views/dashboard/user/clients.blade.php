@@ -17,12 +17,11 @@
             <th>Name</th>
             <th>Email</th>
             <th>Contact</th>
+            <th>Age</th>
+            <th>Driving License #</th>
             <th>Vehicle#</th>
+            <th>Vehicle Model</th>
             <th>Policy Taken</th>
-            <th>Premium</th>
-            <th>Period</th>
-            <th>Starts</th>
-            <th>Premium Due On</th>
 
         </tr>
     </thead>
@@ -32,12 +31,11 @@
             <td>{{ $client->client_fname }}</td>
             <td>{{ $client->client_email }}</td>
             <td>{{ $client->phone_number }}</td>
+            <td>{{ $client->Age }}</td>
+            <td>{{ $client->driving_license_number }}</td>
+            <td>{{ $client->vehicle_registration }}</td>
             <td>{{ $client->vehicle_registration }}</td>
             <td>{{ $client->policy_type }}</td>
-            <td>${{ $client->premium_amount }}</td>
-            <td>{{ $client->payment_period }}</td>
-            <td>{{ $client->policy_start_date }}</td>
-            <td>{{ $client->premium_due_date }}</td>
 
             <td>
                 <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary">Edit</a>

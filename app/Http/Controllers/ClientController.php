@@ -41,6 +41,23 @@ class ClientController extends Controller
 
         return $pdf->stream($client->client_fname . '-report.pdf');
     }
+    public function generatePReport($id)
+    {
+        $client = Client::findOrFail($id);
+
+        $options = new Options();
+        $options->set('defaultFont', 'Helvetica');
+
+        $pdf = new Dompdf($options);
+
+        $html = view('dashboard.user.premium-report', compact('client'));
+
+        $pdf->loadHtml($html);
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->render();
+
+        return $pdf->stream($client->client_fname . '-report.pdf');
+    }
 
     public function update(Request $request, $id)
     {
@@ -97,8 +114,10 @@ class ClientController extends Controller
         $client->payment_period = $policy->payment_period; // retrieve duration from policies table
         $client->vehicle_registration = $request->input('vehicle_registration');
         $client->policy_start_date = $request->input('policy_start_date');
+        $client->payment_date = $request->input('policy_start_date');
         $client->Insurer_id = auth()->user()->id;
         $client->premium_due_date = $client->calculatePremiumDueDate();
+        $client->policy_end_date = $client->calculatePolicyEndDate();
 
         
         $client->save();

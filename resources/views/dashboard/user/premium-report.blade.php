@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Client Report</title>
+    <title>Premium Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,7 +46,7 @@
         <h1>Car Policy Hub</h1>
         <h2>Insurer: {{ auth()->user()->name }}</h2>
     </header>
-    <h3 style="text-decoration: underline">Client Report:</h3>
+    <h3 style="text-decoration: underline">Premium Report:</h3>
     <table id="client-table">
         <tr>
             <th>Client ID:</th>
@@ -65,28 +65,28 @@
             <td>{{ $client->policy_type }}</td>
         </tr>
         <tr>
-            <th>Age:</th>
-            <td>{{ $client->Age }}</td>
+            <th>Policy Start Date:</th>
+            <td>{{ $client->policy_start_date }}</td>
         </tr>
         <tr>
-            <th>Driving License Number:</th>
-            <td>{{ $client->driving_license_number }}</td>
+            <th>Premium Due Date:</th>
+            <td>{{ $client->premium_due_date }}</td>
         </tr>
         <tr>
-            <th>Client Email:</th>
-            <td>{{ $client->client_email }}</td>
+            <th>Policy Duration:</th>
+            <td>{{ $client->policy_duration }} Years</td>
         </tr>
         <tr>
-            <th>Phone Number:</th>
-            <td>{{ $client->phone_number }}</td>
+            <th>Coverage Amount:</th>
+            <td>${{ $client->coverage_amount }}</td>
         </tr>
         <tr>
-            <th>Vehicle Model:</th>
-            <td>{{ $client->vehicle_model }}</td>
+            <th>Premium To Be Paid:</th>
+            <td>${{ $client->premium_amount }}</td>
         </tr>
         <tr>
-            <th>Vehicle Registration:</th>
-            <td>{{ $client->vehicle_registration }}</td>
+            <th>Payment Period:</th>
+            <td>{{ $client->payment_period }}</td>
         </tr>
         <tr>
             <th>Client Details Created on:</th>
