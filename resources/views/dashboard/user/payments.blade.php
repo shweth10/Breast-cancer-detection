@@ -48,6 +48,13 @@
                 @endphp
                 <span class="{{ $class }}">{{ $status }}</span>
             </td>
+            <td>
+                <form action="{{ route('client.destroy', $client->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"><i class="nav-icon fas fa-trash"></i></button>
+                </form>
+            </td>
 
             <td><a href="{{ route('premium.report', $client->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a></td>
         </tr>
