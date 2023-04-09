@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Client;
 use App\Models\Policy;
 use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,8 @@ class PolicyController extends Controller
         $policy->payment_period = $request->input('payment_period');
 
         $policy->save();
+        $client = Client::where('policy_type',$policy->policy_type)->update(['premium_amount'=>$policy->premium_amount]);
+
 
         return redirect()->route('user.policies')->with('success', 'policy has been updated');
     }
