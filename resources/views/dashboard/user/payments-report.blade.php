@@ -49,6 +49,7 @@
 	<table>
 		<thead>
 			<tr>
+				<th>Payment ID</th>
 				<th>Client Name</th>
 				<th>Client Email</th>
 				<th>Payment Method</th>
@@ -56,12 +57,13 @@
 				<th>Payment Period</th>
 				<th>Policy Type</th>
 				<th>Payment Date</th>
-				<th>Next Payment Date</th>
+				<th>Next Payment Due</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($payments as $payment)
 			<tr>
+				<td>{{ $payment->id }}</td>
 				<td>{{ $payment->client_fname }}</td>
 				<td>{{ $payment->client_email }}</td>
 				<td>{{ $payment->payment_method }}</td>
