@@ -8,6 +8,8 @@
     @php
     $policies = App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
     @endphp
+
+    <h3>Policy Details</h3>
     <table class="table">
     <thead>
         <tr>

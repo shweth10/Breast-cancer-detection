@@ -13,6 +13,28 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/dist/css/adminlte.min.css') }}">
+  <style>
+    /* Position search bar to the right side of the page */
+    .search-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+
+    /* Style search bar */
+    .search-container input[type=text] {
+        padding: 3px;
+        margin-top: 3px;
+        font-size: 15px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    /* Style search bar placeholder */
+    .search-container input[type=text]::placeholder {
+        color: #aaa;
+    }
+</style>
 </head>
 <body class="hold-transition sidebar-mini control-sidebar-slide-open layout-navbar-fixed layout-fixed text-sm">
 <div class="wrapper">
@@ -29,7 +51,9 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-     
+    <div class="search-container">
+    <input type="text" id="search" placeholder="Search...">
+</div>
 
      
       <!-- Notifications Dropdown Menu -->
@@ -163,5 +187,15 @@
 <script src="{{ asset('AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('AdminLTE-3.1.0/dist/js/adminlte.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var value = $(this).val().toLowerCase();
+            $('table tbody tr').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </body>
 </html>
