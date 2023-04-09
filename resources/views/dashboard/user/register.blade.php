@@ -34,7 +34,8 @@
                       </div>
                       <div class="form-group">
                         <label for="email"style="color: white; font-weight: bold;">Company Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}">
+                        <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}"required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        <div class="invalid-feedback">Please enter a valid email address</div>
                         <span class="text-danger">@error('email'){{ $message }} @enderror</span>
                     </div>
                       <div class="form-group">

@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 		body {
-			background-color: #333333;
+			background-color: #F8F8FF;
 			color: #FFFFFF;
 			font-family: Arial, sans-serif;
 		}
@@ -88,6 +88,7 @@
 		<div class="form-group">
 	        <label for="payment_period">Payment Period</label>
 	        <select name="payment_period" class="form-control" id="payment_period" value="{{ $policy->payment_period }}" required>
+				<option value="{{ $policy->payment_period }}">{{ $policy->payment_period }}</option>
 				<option value="monthly">Monthly</option>
                 <option value="quarterly">Quarterly</option>
                 <option value="annually">Annually</option>

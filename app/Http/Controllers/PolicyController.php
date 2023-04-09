@@ -10,8 +10,27 @@ use App\Models\Policy;
 use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 class PolicyController extends Controller
 {
+    public function generateReport($id)
+    {
+        $policy = Policy::findOrFail($id);
+
+        $options = new Options();
+        $options->set('defaultFont', 'Helvetica');
+
+        $pdf = new Dompdf($options);
+
+        $html = view('dashboard.user.policy-report', compact('policy'));
+
+        $pdf->loadHtml($html);
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->render();
+
+        return $pdf->stream($policy->policy_type . '-report.pdf');
+    }
     public function update(Request $request, $id)
     {
         $policy = Policy::findOrFail($id);

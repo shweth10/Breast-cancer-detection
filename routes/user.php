@@ -44,6 +44,7 @@ Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'upda
 Route::get('/policies/{policy}/edit', [App\Http\Controllers\PolicyController::class, 'edit'])->name('policy.edit');
 Route::get('/clients/{client}/edit', [App\Http\Controllers\ClientController::class, 'edit'])->name('client.edit');
 Route::get('/clients/{id}/report', [App\Http\Controllers\ClientController::class, 'generateReport'])->name('client.report');
+Route::get('/policy/{id}/report', [App\Http\Controllers\PolicyController::class, 'generateReport'])->name('policy.report');
 Route::get('/payments/report', [App\Http\Controllers\PaymentController::class, 'generatePaymentsReport'])->name('payments.report');
 Route::get('/payments/{id}/report', [App\Http\Controllers\ClientController::class, 'generatePReport'])->name('premium.report');
 

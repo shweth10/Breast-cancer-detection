@@ -16,7 +16,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Policy Taken</th>
+            <th>Policy Type</th>
             <th>Payment Amount</th>
             <th>Period</th>
             <th>Last Payment Made</th>
@@ -56,7 +56,7 @@
 </table>
 
 <div class="text-center">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addPaymentModal">Mark New Payment By Client</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addPaymentModal">Mark New Payment</button>
                 <a href="{{ route('payments.report') }}" class="btn btn-success btn-sm">Generate Payments Report</a>
 
             </div>
@@ -68,7 +68,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addPaymentModalLabel">Mark New Payment By Client</h5>
+                    <h5 class="modal-title" id="addPaymentModalLabel">Mark New Payment</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

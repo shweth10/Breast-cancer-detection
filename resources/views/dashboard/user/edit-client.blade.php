@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 		body {
-			background-color: #333333;
+			background-color: #F8F8FF;
 			color: #FFFFFF;
 			font-family: Arial, sans-serif;
 		}
@@ -101,7 +101,7 @@
 	</form>
 
 	<div style="text-align: center; margin-top: 20px;">
-		<button onclick="window.history.back();" style="background-color: #555555; color: #FFFFFF; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+		<button onclick="window.history.back();" style="background-color: #555555; color: #FFFFFF; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Close Form</button>
 	</div>
 </body>
 </html>

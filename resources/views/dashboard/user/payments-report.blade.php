@@ -39,6 +39,11 @@
 	</style>
 </head>
 <body>
+    @php
+    $clients= App\Models\Client::where('insurer_id', auth()->user()->id)->get();
+    $policies=App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
+    $payments=App\Models\Payment::where('insurer_id', auth()->user()->id)->get();
+    @endphp
 	<p>Company Email: {{ auth()->user()->email }}</p>
     <p>Date: <?php echo date('F j, Y'); ?></p>
     <header>

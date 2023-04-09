@@ -64,6 +64,7 @@
                     <button type="submit" class="btn btn-danger"><i class="nav-icon fas fa-trash"></i></button>
                 </form>
             </td>
+            <td><a href="{{ route('policy.report', $policy->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a></td>
         </tr>
         @endforeach
     </tbody>

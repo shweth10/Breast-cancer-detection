@@ -85,8 +85,9 @@
                         <input type="number" name="driving_license_number" class="form-control" id="driving_license_number" required>
                         </div>
                         <div class="form-group">
-                        <label for="client_email">Email</label>
-                        <input type="text" name="client_email" class="form-control" id="client_email" required>
+                            <label for="client_email">Email</label>
+                            <input type="email" name="client_email" class="form-control" id="client_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <div class="invalid-feedback">Please enter a valid email address</div>
                         </div>
                         <div class="form-group">
                         <label for="phone_number">Phone Number</label>

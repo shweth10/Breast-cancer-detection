@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Client Report</title>
+    <title>Policy Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,70 +40,53 @@
     </style>
 </head>
 <body>
-    @php
-    $clients= App\Models\Client::where('insurer_id', auth()->user()->id)->get();
-    $policies=App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
-    $payments=App\Models\Payment::where('insurer_id', auth()->user()->id)->get();
-    @endphp
     <p>Company Email: {{ auth()->user()->email }}</p>
     <p>Date: <?php echo date('F j, Y'); ?></p>
     <header>
         <h1>Car Policy Hub</h1>
         <h2>Insurer: {{ auth()->user()->name }}</h2>
     </header>
-    <h3 style="text-decoration: underline">Client Report:</h3>
-    <table id="client-table">
-        <tr>
-            <th>Client ID:</th>
-            <td>{{ $client->id }}</td>
-        </tr>
-        <tr>
-            <th>Client Name:</th>
-            <td>{{ $client->client_fname }}</td>
-        </tr>
+    <h3 style="text-decoration: underline">Policy Information Report:</h3>
+    <table id="policy-table">
         <tr>
             <th>Policy ID:</th>
-            <td>{{ $client->policy_id }}</td>
+            <td>{{ $policy->id }}</td>
+        </tr>
+        <tr>
+            <th>Insurer ID:</th>
+            <td>{{ auth()->user()->id }}</td>
         </tr>
         <tr>
             <th>Policy Type:</th>
-            <td>{{ $client->policy_type }}</td>
+            <td>{{ $policy->policy_type }}</td>
         </tr>
         <tr>
-            <th>Policy Start Date:</th>
-            <td>{{ $client->policy_start_date }}</td>
+            <th>Coverage Amount:</th>
+            <td>{{ $policy->coverage_amount }}</td>
         </tr>
         <tr>
-            <th>Age:</th>
-            <td>{{ $client->Age }}</td>
+            <th>Coverage Information:</th>
+            <td>{{ $policy->coverage_information }}</td>
         </tr>
         <tr>
-            <th>Driving License Number:</th>
-            <td>{{ $client->driving_license_number }}</td>
+            <th>Premium Amount:</th>
+            <td>{{ $policy->premium_amount }}</td>
         </tr>
         <tr>
-            <th>Client Email:</th>
-            <td>{{ $client->client_email }}</td>
+            <th>Policy Duration:</th>
+            <td>{{ $policy->policy_duration }}</td>
         </tr>
         <tr>
-            <th>Phone Number:</th>
-            <td>{{ $client->phone_number }}</td>
+            <th>Payment Period:</th>
+            <td>{{ $policy->payment_period }}</td>
         </tr>
         <tr>
-            <th>Vehicle Model:</th>
-            <td>{{ $client->vehicle_model }}</td>
+            <th>Policy Details Created on:</th>
+            <td>{{ $policy->created_at }}</td>
         </tr>
         <tr>
-            <th>Vehicle Registration:</th>
-            <td>{{ $client->vehicle_registration }}</td>
-        </tr>
-        <tr>
-            <th>Client Details Created on:</th>
-            <td>{{ $client->created_at }}</td>
-        </tr>
-        <tr>
-            <th>Client Details Last Updated:</th>
-            <td>{{ $client->updated_at }}</td>
+            <th>Policy Details Last Updated:</th>
+            <td>{{ $policy->updated_at }}</td>
         </tr>
     </table>
     <footer style="position: absolute; bottom: 0; width: 100%; height: 45px; background-color: #f2f2f2;">
