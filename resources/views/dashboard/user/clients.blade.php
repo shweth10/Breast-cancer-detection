@@ -38,16 +38,16 @@
             <td>{{ $client->policy_type }}</td>
 
             <td>
-                <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('client.edit', $client->id) }}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
             </td>
             <td>
                 <form action="{{ route('client.destroy', $client->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger"><i class="nav-icon fas fa-trash"></i></button>
                 </form>
             </td>
-            <td><a href="{{ route('client.report', $client->id) }}" class="btn btn-success btn-sm">Report</a></td>
+            <td><a href="{{ route('client.report', $client->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a></td>
         </tr>
         @endforeach
     </tbody>

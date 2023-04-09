@@ -55,13 +55,13 @@
             <td>{{ $policy->payment_period }}</td>
             <td>{{ $policy->policy_duration }}</td>
             <td>
-                <a href="{{ route('policy.edit', $policy->id) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('policy.edit', $policy->id) }}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
             </td>
             <td>
                 <form action="{{ route('policy.destroy', $policy->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger"><i class="nav-icon fas fa-trash"></i></button>
                 </form>
             </td>
         </tr>

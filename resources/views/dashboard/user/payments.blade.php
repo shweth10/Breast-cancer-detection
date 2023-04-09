@@ -49,7 +49,7 @@
                 <span class="{{ $class }}">{{ $status }}</span>
             </td>
 
-            <td><a href="{{ route('premium.report', $client->id) }}" class="btn btn-success btn-sm">Report</a></td>
+            <td><a href="{{ route('premium.report', $client->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a></td>
         </tr>
         @endforeach
     </tbody>
@@ -57,7 +57,7 @@
 
 <div class="text-center">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#addPaymentModal">Mark New Payment By Client</button>
-                <a href="{{ route('payments.report') }}" class="btn btn-primary">Generate Payments Report</a>
+                <a href="{{ route('payments.report') }}" class="btn btn-success btn-sm">Generate Payments Report</a>
 
             </div>
         </div>

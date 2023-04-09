@@ -96,7 +96,7 @@
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
     <i class="nav-icon fas fa-home"></i>
-      <span class="brand-text font-weight-light">Welcome Page</span>
+      <span class="brand-text font-weight-light">Home </span>
     </a>
 
     <!-- Sidebar -->
