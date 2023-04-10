@@ -29,6 +29,39 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            .m-2{
+                margin: 0.5rem;
+                }
+            .inline-block{
+                display: inline-block;
+                }
+            .rounded{
+                border-radius: 0.25rem;
+                }
+            .bg-black{
+                    --tw-bg-opacity: 1;
+                    background-color: rgb(33 43 54 / var(--tw-bg-opacity));
+                    }
+            .py-1{
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                }
+            .px-2{
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                }
+            .text-sm{
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                    }
+            .font-semibold{
+                    font-weight: 600;
+                    }
+            .text-white{
+                    --tw-text-opacity: 1;
+                    color: rgb(255 255 255 / var(--tw-text-opacity));
+                    }
+
         </style>
     </head>
     <body>
@@ -71,10 +104,10 @@
                                         @auth
                                             <a class="main-btn" href="{{ route('user.home') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                                         @else
-                                            <a class="main-btn" href="{{ route('user.login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                                            <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
                                             @if (Route::has('user.register'))
-                                                <a class="main-btn" href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                                                <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                                             @endif
                                         @endauth
                                     </div>

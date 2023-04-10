@@ -65,6 +65,14 @@
             <td>{{ $client->policy_type }}</td>
         </tr>
         <tr>
+            <th>Policy Duration:</th>
+            <td>{{ $client->policy_duration }} Years</td>
+        </tr>
+        <tr>
+            <th>Payment Period:</th>
+            <td>{{ $client->payment_period }}</td>
+        </tr>
+        <tr>
             <th>Policy Start Date:</th>
             <td>{{ $client->policy_start_date }}</td>
         </tr>
@@ -73,12 +81,12 @@
             <td>{{ $client->policy_end_date }}</td>
         </tr>
         <tr>
-            <th>Premium Due Date:</th>
-            <td>{{ $client->premium_due_date }}</td>
+            <th>Last Payment Date:</th>
+            <td>{{ $client->payment_date }}</td>
         </tr>
         <tr>
-            <th>Policy Duration:</th>
-            <td>{{ $client->policy_duration }} Years</td>
+            <th>Next Payment Due Date:</th>
+            <td>{{ $client->premium_due_date }}</td>
         </tr>
         <tr>
             <th>Coverage Amount:</th>
@@ -87,18 +95,6 @@
         <tr>
             <th>Premium To Be Paid:</th>
             <td>${{ $client->premium_amount }}</td>
-        </tr>
-        <tr>
-            <th>Payment Period:</th>
-            <td>{{ $client->payment_period }}</td>
-        </tr>
-        <tr>
-            <th>Last Payment Date:</th>
-            <td>{{ $client->payment_date }}</td>
-        </tr>
-        <tr>
-            <th>Payment Due Date:</th>
-            <td>{{ $client->premium_due_date }}</td>
         </tr>
         <tr>
             <th>Client Details Created on:</th>

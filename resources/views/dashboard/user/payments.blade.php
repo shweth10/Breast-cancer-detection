@@ -44,13 +44,13 @@
 
                         if ($current_date > $client->premium_due_date) {
                             $status = 'Expired';
-                            $class = 'text-danger';
+                            $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
                         } elseif ($current_date >= $due_date && $current_date <= $client->premium_due_date) {
                             $status = 'Due';
-                            $class = 'text-danger';
+                            $class = 'm-2 inline-block rounded bg-warning py-1 px-2 text-sm font-semibold text-black';
                         } else {
                             $status = 'Active';
-                            $class = 'text-success';
+                            $class = 'm-2 inline-block rounded bg-success py-1 px-2 text-sm font-semibold text-white';
                         }
                     @endphp
                     <span class="{{ $class }}">{{ $status }}</span>
