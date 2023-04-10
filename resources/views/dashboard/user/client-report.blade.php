@@ -74,6 +74,10 @@
             <td>{{ $client->policy_start_date }}</td>
         </tr>
         <tr>
+            <th>Policy End Date:</th>
+            <td>{{ $client->policy_end_date }}</td>
+        </tr>
+        <tr>
             <th>Age:</th>
             <td>{{ $client->Age }}</td>
         </tr>

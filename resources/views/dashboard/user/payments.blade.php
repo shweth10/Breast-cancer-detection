@@ -27,39 +27,48 @@
     </thead>
     <tbody>
         @foreach($clients as $client)
-        <tr>
-            <td>{{ $client->client_fname }}</td>
-            <td>{{ $client->policy_type }}</td>
-            <td>${{ $client->premium_amount }}</td>
-            <td>{{ $client->payment_period }}</td>
-            <td>{{ $client->payment_date }}</td>
-            <td>{{ $client->premium_due_date }}</td>
-            <td>
-                @php
-                    $status = '';
-                    $current_date = date('Y-m-d');
-                    if ($current_date > $client->premium_due_date) {
-                        $status = 'Expired';
-                        $class = 'text-danger';
-                    } else {
-                        $status = 'Active';
-                        $class = 'text-success';
-                    }
-                @endphp
-                <span class="{{ $class }}">{{ $status }}</span>
-            </td>
-            <td>
-                <form action="{{ route('client.destroy', $client->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger"><i class="nav-icon fas fa-trash"></i></button>
-                </form>
-            </td>
+            <tr>
+                <td>{{ $client->client_fname }}</td>
+                <td>{{ $client->policy_type }}</td>
+                <td>${{ $client->premium_amount }}</td>
+                <td>{{ $client->payment_period }}</td>
+                <td>{{ $client->payment_date }}</td>
+                <td>{{ $client->premium_due_date }}</td>
+                <td>
+                    @php
+                        $status = '';
+                        $class = '';
 
-            <td><a href="{{ route('premium.report', $client->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a></td>
-        </tr>
+                        $current_date = date('Y-m-d');
+                        $due_date = date('Y-m-d', strtotime($client->premium_due_date . ' - 20 days'));
+
+                        if ($current_date > $client->premium_due_date) {
+                            $status = 'Expired';
+                            $class = 'text-danger';
+                        } elseif ($current_date >= $due_date && $current_date <= $client->premium_due_date) {
+                            $status = 'Due';
+                            $class = 'text-danger';
+                        } else {
+                            $status = 'Active';
+                            $class = 'text-success';
+                        }
+                    @endphp
+                    <span class="{{ $class }}">{{ $status }}</span>
+                </td>
+                <td>
+                    <form action="{{ route('client.destroy', $client->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"><i class="nav-icon fas fa-trash"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ route('premium.report', $client->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a>
+                </td>
+            </tr>
         @endforeach
     </tbody>
+
 </table>
 
 <div class="text-center">
