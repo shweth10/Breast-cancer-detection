@@ -11,7 +11,7 @@
     <a href="{{ route('user.policies') }}" class="nav-link">
       <i class="nav-icon fas fa-file"></i>
       <p>
-        Add Policy Type
+        Manage Policies
       </p>
     </a>
   </li>
@@ -20,7 +20,7 @@
     <a href="{{ route('user.clients') }}" class="nav-link">
       <i class="nav-icon fas fa-user-plus"></i>
       <p>
-        Add Client
+        Manage Clients
       </p>
     </a>
   </li>

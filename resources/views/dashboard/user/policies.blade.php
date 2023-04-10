@@ -71,7 +71,7 @@
 </table>
 
 <div class="text-center">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addPolicyModal">Add New Policy Type</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addPolicyModal">Add New Product</button>
             </div>
         </div>
     </div>
