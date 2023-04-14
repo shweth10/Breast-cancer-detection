@@ -102,7 +102,7 @@
                                 @if (Route::has('user.login'))
                                     <div>
                                         @auth
-                                            <a class="main-btn" href="{{ route('user.home') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                                            <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.home') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                                         @else
                                             <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.login') }}" class="text-sm text-gray-700 underline">Log in</a>
 

@@ -21,7 +21,7 @@
                           <h5
                             class="text-blueGray-400 uppercase font-bold text-xs"
                           >
-                            Policies offered
+                            Policies Offered
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
                           {{ App\Models\Policy::where('Insurer_id', auth()->user()->id)->count() }}
@@ -35,14 +35,6 @@
                           </div>
                         </div>
                       </div>
-                      <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-emerald-500 mr-2">
-                          <i class="fas fa-arrow-up"></i> 3.48%
-                        </span>
-                        <span class="whitespace-nowrap">
-                          Since last month
-                        </span>
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -72,12 +64,6 @@
                           </div>
                         </div>
                       </div>
-                      <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-red-500 mr-2">
-                          <i class="fas fa-arrow-down"></i> 3.48%
-                        </span>
-                        <span class="whitespace-nowrap"> Since last week </span>
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -107,12 +93,6 @@
                           </div>
                         </div>
                       </div>
-                      <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-orange-500 mr-2">
-                          <i class="fas fa-arrow-down"></i> 1.10%
-                        </span>
-                        <span class="whitespace-nowrap"> Since yesterday </span>
-                      </p>
                     </div>
                   </div>
                 </div>
