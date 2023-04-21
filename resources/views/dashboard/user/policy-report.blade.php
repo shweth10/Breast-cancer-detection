@@ -40,21 +40,15 @@
     </style>
 </head>
 <body>
-    <p>Company Email: {{ auth()->user()->email }}</p>
     <p>Date: <?php echo date('F j, Y'); ?></p>
     <header>
         <h1>Car Policy Hub</h1>
-        <h2>Insurer: {{ auth()->user()->name }}</h2>
     </header>
     <h3 style="text-decoration: underline">Policy Information Report:</h3>
     <table id="policy-table">
         <tr>
             <th>Policy ID:</th>
             <td>{{ $policy->id }}</td>
-        </tr>
-        <tr>
-            <th>Insurer ID:</th>
-            <td>{{ auth()->user()->id }}</td>
         </tr>
         <tr>
             <th>Policy Type:</th>

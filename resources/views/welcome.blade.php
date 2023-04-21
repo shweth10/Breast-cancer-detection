@@ -93,6 +93,9 @@
                                         <a class="page-scroll active" href="#home">Home</a>
                                     </li>
                                     <li class="nav-item ml-5 lg:ml-11">
+                                        <a class="page-scroll active" href="#pricing">Products</a>
+                                    </li>
+                                    <li class="nav-item ml-5 lg:ml-11">
                                         <a class="page-scroll" href="#services">Services</a>
                                     </li>
                                     <li class="nav-item ml-5 lg:ml-11">
@@ -110,7 +113,7 @@
                                             <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
                                             @if (Route::has('user.register'))
-                                                <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                                                <!--<a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> -->
                                             @endif
                                         @endauth
                                     </div>
@@ -191,7 +194,6 @@
                 <div class="w-full lg:w-1/2">
                     <div class="section_title text-center pb-6">
                         <h5 class="sub_title">Pricing Plans</h5>
-                        <h4 class="main_title">Choose Your Plan</h4>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -214,7 +216,7 @@
                                             <div class="pricing_content mt-6">
                                                 <span class="pricing_price font-bold text-black text-4xl">${{ $policy->premium_amount }}</span>
                                                 <p class="mt-4 leading-9">{{ $policy->coverage_information }} </p>
-                                                <a href="" class="main-btn pricing_btn">Choose Plan</a>
+                                                <a href="{{ route('policy.report', $policy->id) }}" class="main-btn pricing_btn">More Information</a>
                                             </div>
                                         </div>  <!-- single pricing -->
                                     </div>
