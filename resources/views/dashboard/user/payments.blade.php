@@ -30,7 +30,7 @@
             <tr>
                 <td>{{ $client->client_fname }}</td>
                 <td>{{ $client->policy_type }}</td>
-                <td>${{ $client->premium_amount }}</td>
+                <td>${{ number_format($client->premium_amount, 2, '.', ',') }}</td>
                 <td>{{ $client->payment_period }}</td>
                 <td>{{ $client->payment_date }}</td>
                 <td>{{ $client->premium_due_date }}</td>

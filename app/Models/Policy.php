@@ -20,9 +20,7 @@ class Policy extends Model
         'Insurer_id',
         'policy_type',
         'coverage_information',
-        'coverage_amount',
-        'premium_amount',
-        'payment_period',
+        'coverage_rate',
         'policy_duration',
     ];
 

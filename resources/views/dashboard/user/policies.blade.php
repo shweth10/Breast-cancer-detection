@@ -16,10 +16,9 @@
             <th>Policy ID</th>
             <th>Policy Type</th>
             <th>Coverage Information</th>
-            <th>Coverage Amount</th>
-            <th>Premium Amount</th>
-            <th>Payment Period</th>
+            <th>Maximum Coverage Amount</th>
             <th>Policy Duration (Years)</th>
+            <th>Coverage Rate (%)</th>
         </tr>
     </thead>
     <tbody>
@@ -50,10 +49,9 @@
                     {{ $policy->coverage_information }}
                 @endif
             </td>
-            <td>{{ $policy->coverage_amount }}</td>
-            <td>{{ $policy->premium_amount }}</td>
-            <td>{{ $policy->payment_period }}</td>
+            <td>${{ number_format($policy->max_coverage_amount, 2, '.', ',') }}</td>
             <td>{{ $policy->policy_duration }}</td>
+            <td>{{ $policy->coverage_rate }}%</td>
             <td>
                 <a href="{{ route('policy.edit', $policy->id) }}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
             </td>
@@ -98,24 +96,16 @@
                         <input type="text" name="coverage_information" class="form-control" id="coverage_information" required>
                         </div>
                         <div class="form-group">
-                        <label for="coverage_amount">Coverage Amount($)</label>
-                        <input type="number" name="coverage_amount" class="form-control" id="coverage_amount" required>
-                        </div>
-                        <div class="form-group">
-                        <label for="premium_amount">Premium Amount($)</label>
-                        <input type="number" name="premium_amount" class="form-control" id="premium_amount" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="payment_period">Payment Period</label>
-                            <select name="payment_period" class="form-control" id="payment_period" required>
-                                <option value="monthly">Monthly</option>
-                                <option value="quarterly">Quarterly</option>
-                                <option value="annually">Annually</option>
-                            </select>
+                        <label for="max_coverage_amount">Maximum Coverage Amount</label>
+                        <input type="number" name="max_coverage_amount" class="form-control" id="max_coverage_amount" required>
                         </div>
                         <div class="form-group">
                         <label for="policy_duration">Policy Duration(Years)</label>
                         <input type="number" name="policy_duration" class="form-control" id="policy_duration" required>
+                        </div>
+                        <div class="form-group">
+                        <label for="policy_duration">Coverage Rate(%)</label>
+                        <input type="number" name="coverage_rate" class="form-control" id="coverage_rate" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

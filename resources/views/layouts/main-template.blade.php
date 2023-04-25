@@ -438,5 +438,47 @@
         window.myBar = new Chart(ctx, config);
       })();
     </script>
+    <script>
+    function updateSliderValue(val) {
+        document.getElementById('sliderValue').textContent = val;
+    }
+</script>
+<script>
+  const policySelect = document.getElementById('policy_id');
+  const coverageSlider = document.getElementById('coverage_amount');
+  const currentCoverageValue = document.getElementById('sliderValue');
+  const sliderValueMin = document.querySelector('.slider-value-min');
+  const sliderValueMax = document.querySelector('.slider-value-max');
+
+  function updateSliderValue(val) {
+    currentCoverageValue.textContent = val;
+  }
+
+  policySelect.addEventListener('change', function(event) {
+    const maxCoverageAmount = event.target.selectedOptions[0].dataset.maxCoverage;
+    const coverageSliderMin = maxCoverageAmount * 0.25;
+    const coverageSliderMax = maxCoverageAmount;
+    
+    coverageSlider.min = coverageSliderMin;
+    coverageSlider.max = coverageSliderMax;
+    coverageSlider.value = coverageSliderMin;
+    updateSliderValue(coverageSliderMin);
+    
+    sliderValueMin.textContent = `Min-${coverageSliderMin}`;
+    sliderValueMax.textContent = `Max-${coverageSliderMax}`;
+  });
+</script>
+
+<script>
+    function updateSliderValue(value) {
+        document.getElementById('sliderValue').textContent = value;
+    }
+
+    function setExcessAmount(percent) {
+        const coverageAmount = parseFloat(document.getElementsByName('coverage_amount')[0].value);
+        const excessAmount = Math.round(coverageAmount * percent);
+        document.getElementById('excess_amount').value = excessAmount;
+    }
+</script>
 </body>
 </html>

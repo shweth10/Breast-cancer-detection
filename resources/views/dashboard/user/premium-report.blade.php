@@ -90,11 +90,11 @@
         </tr>
         <tr>
             <th>Coverage Amount:</th>
-            <td>${{ $client->coverage_amount }}</td>
+            <td>${{ number_format($client->coverage_amount, 2, '.', ',') }}</td>
         </tr>
         <tr>
             <th>Premium To Be Paid:</th>
-            <td>${{ $client->premium_amount }}</td>
+            <td>${{ number_format($client->premium_amount, 2, '.', ',') }}</td>
         </tr>
         <tr>
             <th>Client Details Created on:</th>

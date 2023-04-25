@@ -36,11 +36,7 @@ class PolicyController extends Controller
     {
         $policy = Policy::findOrFail($id);
         $policy->policy_type = $request->input('policy_type');
-        $policy->coverage_amount = $request->input('coverage_amount');
-        $policy->premium_amount = $request->input('premium_amount');
-        $policy->policy_duration = $request->input('policy_duration');
         $policy->coverage_information = $request->input('coverage_information');
-        $policy->payment_period = $request->input('payment_period');
 
         $policy->save();
         $client = Client::where('policy_type',$policy->policy_type)->update(['premium_amount'=>$policy->premium_amount]);
@@ -68,11 +64,10 @@ class PolicyController extends Controller
     {
         $policy = new Policy();
         $policy->policy_type = $request->input('policy_type');
-        $policy->coverage_amount = $request->input('coverage_amount');
-        $policy->premium_amount = $request->input('premium_amount');
         $policy->policy_duration = $request->input('policy_duration');
+        $policy->max_coverage_amount = $request->input('max_coverage_amount');
+        $policy->coverage_rate = $request->input('coverage_rate');
         $policy->coverage_information = $request->input('coverage_information');
-        $policy->payment_period = $request->input('payment_period');
         $policy->Insurer_id = auth()->user()->id;
         
         $policy->save();

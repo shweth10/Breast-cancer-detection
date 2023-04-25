@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('driving_license_number');
             $table->string('client_email');
             $table->string('phone_number');
-            $table->string('vehicle_model');
+            $table->decimal('vehicle_model');
             $table->string('vehicle_registration');
             $table->unsignedBigInteger('policy_id');
             $table->foreign('policy_id')->references('id')->on('policies')->onDelete('cascade');
@@ -29,6 +29,7 @@ class CreateClientsTable extends Migration
             $table->integer('policy_duration')->nullable();
             $table->integer('premium_amount')->nullable();
             $table->integer('coverage_amount')->nullable();
+            $table->integer('excess_amount')->nullable();
             $table->string('payment_period')->nullable();
             $table->date('policy_start_date');
             $table->date('policy_end_date');

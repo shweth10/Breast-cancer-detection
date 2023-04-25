@@ -109,9 +109,26 @@ class ClientController extends Controller
         $client->policy_id = $policy->id;
         $client->policy_type = $policy->policy_type; // retrieve policy_type from policies table
         $client->policy_duration = $policy->policy_duration; // retrieve duration from policies table
-        $client->coverage_amount = $policy->coverage_amount; // retrieve duration from policies table
-        $client->premium_amount = $policy->premium_amount; // retrieve duration from policies table
-        $client->payment_period = $policy->payment_period; // retrieve duration from policies table
+        $client->coverage_amount = $request->input('coverage_amount');
+        $client->excess_amount = $request->input('excess_amount');
+        if ($client->Age < 25) {
+            $client->excess_amount += 250;
+        }
+        // Calculate premium_amount using the formula
+        $policyRate = $policy->coverage_rate;
+        $premium = ($client->coverage_amount * $policyRate/100) - ($client->excess_amount * $policyRate/100);
+        $premium -= ($client->excess_amount * $policyRate/100) * ($client->vehicle_model/100);
+    
+        $payment_period = $request->input('payment_period');
+        if ($payment_period == 'monthly') {
+            $premium = $premium / 12;
+        } elseif ($payment_period == 'quarterly') {
+            $premium = $premium / 4;
+        }
+        
+        $client->premium_amount = $premium;
+
+        $client->payment_period = $request->input('payment_period');
         $client->vehicle_registration = $request->input('vehicle_registration');
         $client->policy_start_date = $request->input('policy_start_date');
         $client->payment_date = $request->input('policy_start_date');

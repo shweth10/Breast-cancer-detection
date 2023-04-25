@@ -55,24 +55,20 @@
             <td>{{ $policy->policy_type }}</td>
         </tr>
         <tr>
-            <th>Coverage Amount:</th>
-            <td>{{ $policy->coverage_amount }}</td>
+            <th>Maximum Coverage Amount:</th>
+            <td>${{ number_format($policy->max_coverage_amount, 2, '.', ',') }}</td>
+        </tr>
+        <tr>
+            <th>Coverage Rate:</th>
+            <td>{{ $policy->coverage_rate }}%</td>
         </tr>
         <tr>
             <th>Coverage Information:</th>
             <td>{{ $policy->coverage_information }}</td>
         </tr>
         <tr>
-            <th>Premium Amount:</th>
-            <td>{{ $policy->premium_amount }}</td>
-        </tr>
-        <tr>
             <th>Policy Duration:</th>
             <td>{{ $policy->policy_duration }}</td>
-        </tr>
-        <tr>
-            <th>Payment Period:</th>
-            <td>{{ $policy->payment_period }}</td>
         </tr>
         <tr>
             <th>Policy Details Created on:</th>
