@@ -32,18 +32,6 @@ class PolicyController extends Controller
 
         return $pdf->stream($policy->policy_type . '-report.pdf');
     }
-    public function update(Request $request, $id)
-    {
-        $policy = Policy::findOrFail($id);
-        $policy->policy_type = $request->input('policy_type');
-        $policy->coverage_information = $request->input('coverage_information');
-
-        $policy->save();
-        $client = Client::where('policy_type',$policy->policy_type)->update(['premium_amount'=>$policy->premium_amount]);
-
-
-        return redirect()->route('user.policies')->with('success', 'policy has been updated');
-    }
 
     public function edit($id)
     {
@@ -51,6 +39,20 @@ class PolicyController extends Controller
 
         return view('dashboard.user.edit-policy', compact('policy'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $policy = Policy::findOrFail($id);
+        $policy->policy_type = $request->input('policy_type');
+        $policy->policy_duration = $request->input('policy_duration');
+        $policy->max_coverage_amount = $request->input('max_coverage_amount');
+        $policy->coverage_information = $request->input('coverage_information');
+        $policy->coverage_rate = $request->input('coverage_rate');
+        $policy->save();
+
+        return redirect()->route('user.policies')->with('success', 'Policy has been updated');
+    }
+
 
     public function getPoliciesForCurrentUser()
     {

@@ -40,9 +40,8 @@ Route::post('/payment', [App\Http\Controllers\PaymentController::class, 'store']
 Route::delete('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'destroy'])->name('policy.destroy');
 Route::delete('/clients/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client.destroy');
 Route::put('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'update'])->name('policy.update');
-Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
-Route::get('/policies/{policy}/edit', [App\Http\Controllers\PolicyController::class, 'edit'])->name('policy.edit');
-Route::get('/clients/{client}/edit', [App\Http\Controllers\ClientController::class, 'edit'])->name('client.edit');
+Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('clients.update');
+
 Route::get('/clients/{id}/report', [App\Http\Controllers\ClientController::class, 'generateReport'])->name('client.report');
 Route::get('/policy/{id}/report', [App\Http\Controllers\PolicyController::class, 'generateReport'])->name('policy.report');
 Route::get('/payments/report', [App\Http\Controllers\PaymentController::class, 'generatePaymentsReport'])->name('payments.report');
