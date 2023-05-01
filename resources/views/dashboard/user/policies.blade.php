@@ -87,6 +87,8 @@
             </button>
         </div>
         <form action="{{ route('policy.update', $policy->id) }}" method="POST">
+
+        
             @csrf
             @method('PUT')
             <div class="modal-body">

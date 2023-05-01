@@ -38,7 +38,33 @@
             <td>{{ $client->Age }}</td>
             <td>{{ $client->driving_license_number }}</td>
             <td>{{ $client->vehicle_registration }}</td>
-            <td>{{ $client->vehicle_model }}</td>
+            <td>
+            @switch($client->vehicle_model)
+                @case(99)
+                Toyota
+                @break
+                @case(90)
+                Honda
+                @break
+                @case(85)
+                Ford
+                @break
+                @case(80)
+                Nissan
+                @break
+                @case(75)
+                Chevrolet
+                @break
+                @case(72)
+                Hyundai
+                @break
+                @case(70)
+                Kia
+                @break
+                @default
+                Unknown
+            @endswitch
+            </td> 
             <td>{{ $client->policy_type }}</td>
             <td>${{ number_format($client->coverage_amount, 2, '.', ',') }}</td>
             <td>${{ number_format($client->excess_amount, 2, '.', ',') }}</td>
@@ -78,35 +104,70 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{ route('clients.update', $client->id) }}" method="POST">
+        <form action="{{ route('client.update', $client->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="modal-body">
-            <div class="form-group">
-            <label for="client_fname">Client Name</label>
-                        <input type="text" name="client_fname" class="form-control" id="client_fname" value=" {{$client->client_fname }} "required>
-                        </div>
-                        <div class="form-group">
-                            <label for="Age">Age</label> (Note, if age is under 25 then extra $250 is added to excess)
-                            <input type="number" name="Age" class="form-control" id="Age" value="{{$client->Age}}" required>
-                        </div>
 
-                        <div class="form-group">
+            <div class="form-group">
+                        <label for="client_fname">Client Name</label>
+                        <input type="text" name="client_fname" class="form-control" id="1client_fname" value=" {{ $client->client_fname }} " required>
+            </div>
+
+            <div class="form-group">
+                        <label for="Age">Age</label> (Note, if age is under 25 then extra $250 is added to excess)
+                        <input type="number" name="Age" class="form-control" id="1Age" value="{{ intval($client->Age) }}" required autocomplete="off">
+
+            </div>
+
+            <div class="form-group">
                         <label for="driving_license_number">Driving License #</label>
-                        <input type="number" name="driving_license_number" class="form-control" id="driving_license_number" value="{{$client->driving_license_number}}"required>
-                        </div>
-                        <div class="form-group">
+                        <input type="number" name="driving_license_number" class="form-control" id="1driving_license_number" value="{{ $client->driving_license_number }}" required>
+
+            </div>
+
+            <div class="form-group">
                             <label for="client_email">Email</label>
-                            <input type="email" name="client_email" class="form-control" id="client_email" value="{{$client->client_email}}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <input type="email" name="client_email" class="form-control" id="1client_email" value="{{ $client->client_email }}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                             <div class="invalid-feedback">Please enter a valid email address</div>
-                        </div>
-                        <div class="form-group">
+            </div>
+
+            <div class="form-group">
                         <label for="phone_number">Phone Number</label>
-                        <input type="number" name="phone_number" class="form-control" id="phone_number" value="{{$client->phone_number}}" required>
-                        </div>
-                        <div class="form-group">
-                        <label for="vehicle_model">Vehicle Make</label>
-                        <select name="vehicle_model" class="form-control" id="vehicle_model" required>
+                        <input type="number" name="phone_number" class="form-control" id="1phone_number" value="{{ $client->phone_number }}" required>
+            </div>
+
+            <div>
+            <label for="vehicle_model">Vehicle Make</label>
+                        <select name="vehicle_model" class="form-control" id="1vehicle_model"  required>
+                                <option value="{{ $client->vehicle_model }}">
+                                    @switch($client->vehicle_model)
+                                        @case(99)
+                                            Toyota
+                                            @break
+                                        @case(90)
+                                            Honda
+                                            @break
+                                        @case(85)
+                                            Ford
+                                            @break
+                                        @case(80)
+                                            Nissan
+                                            @break
+                                        @case(75)
+                                            Chevrolet
+                                            @break
+                                        @case(72)
+                                            Hyundai
+                                            @break
+                                        @case(70)
+                                            Kia
+                                            @break
+                                        @default
+                                            Unknown
+                                    @endswitch
+                                </option>
+
                                 <option value=99>Toyota</option>
                                 <option value=90>Honda</option>
                                 <option value=85>Ford</option>
@@ -115,57 +176,60 @@
                                 <option value=72>Hyundai</option>
                                 <option value=70>Kia</option>
                             </select>
-                        </div>
-                        <div class="form-group">
+            </div>
+
+            <div class="form-group">
                         <label for="vehicle_registration">Vehicle Registration</label>
-                        <input type="text" name="vehicle_registration" class="form-control" id="vehicle_registration" value="{{$client->vehicle_registration}}"required>
-                        </div>
+                        <input type="text" name="vehicle_registration" class="form-control" id="1vehicle_registration" value="{{ $client->vehicle_registration }}" required>
+            </div>
 
-                        <div class="form-group" id="policy_id_field">
-                            <label for="policy_id">Policy Taken</label>
-                            <select class="form-control" id="policy_id" name="policy_id" required>
-                                @if ($policies->isEmpty())
-                                <option value="">Policy not found, Add policy type first!</option>
-                                @else
-                                <option value="{{$client->policy_id}}">{{$client->policy_type}}</option>
-                                @foreach($policies as $policy)
-                                    <option value="{{ $policy->id }}" data-max-coverage="{{ $policy->max_coverage_amount }}">{{ $policy->policy_type }}</option>
-                                @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="coverage_amount">Coverage Amount ($)</label>
-                            <div class="slider-container">
-                            @if ($policies->isEmpty())
-                                <option value="">Policy not found, Add policy type first!</option>
-                                @else
-                                <span class="slider-value-current" value="{{ max(0.25 * $policy->max_coverage_amount, 0) }}" id="sliderValue">${{ number_format(0.25 * $policy->max_coverage_amount, 2, '.', ',') }}</span>
-                                <input type="range" name="coverage_amount"  value="{{$client->coverage_amount}}" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" id="coverage_amount" required min="{{ max(0.25 * $policy->max_coverage_amount, 0) }}" max="{{ $policy->max_coverage_amount }}" step="1" onchange="updateSliderValue(this.value)">
-                                <div class="slider-value-container">
-                                    <span class="slider-value-min">Min- ${{ number_format(0.25 * $policy->max_coverage_amount, 2, '.', ',') }}</span>
-                                    <span class="slider-value-max">Max- ${{ number_format($policy->max_coverage_amount, 2, '.', ',') }} </span>
-                                    @endif
-                                </div>
-                            </div>  
-                        </div>
+            <div class="form-group" id="1policy_id_field">
+                <label for="policy_id">Policy Taken</label>
+                <select class="form-control" id="1policy_id" name="policy_id" >
+                    @if ($policies->isEmpty())
+                        <option value="">Policy not found, Add policy type first!</option>
+                    @else
+                        <option value="{{ $client->policy_type }}">{{ $client->policy_type }}</option>
+                        @foreach($policies as $policy)
+                            <option value="{{ $policy->id }}" data-max-coverage="{{ $policy->max_coverage_amount }}">{{ $policy->policy_type }}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
 
-                        <div class="form-group">
-                            <label for="payment_period">Payment Period</label>
-                            <select name="payment_period" class="form-control" id="payment_period" required>
-                                <option value="{{$client->payment_period}}">{{$client->payment_period}}</option>
-                                <option value="monthly">Monthly</option>
-                                <option value="quarterly">Quarterly</option>
-                                <option value="annually">Annually</option>
-                            </select>
+
+            <label for="coverage_amount">Coverage Amount</label>
+                        <div>
+                        <input type="number" name="coverage_amount" class="form-control" id="1coverage_amount" value="{{ $client->coverage_amount }}" required>
+                            <div class="btn-group mt-2">
+                                <button type="button" id="1coverage_button_35" class="btn btn-primary">35%</button>
+                                <button type="button" id="1coverage_button_65" class="btn btn-primary">65%</button>
+                                <button type="button" id="1coverage_button_100" class="btn btn-primary">100%</button>
+                            </div>
                         </div>
-                        <div class="form-group">
+                    </div>
+
+            <div class="form-group">
+                        <label for="excess_amount">Excess Amount</label>
+                        <input type="number" name="excess_amount" class="form-control" id="1excess_amount" value="{{ $client->excess_amount }}" required>
+
+            </div>
+
+            <div class="form-group">
+                <label for="payment_period">Payment Period</label>
+                <select name="payment_period" class="form-control" id="1payment_period" required>
+                    <option value="{{ $client->payment_period }}">{{ $client->payment_period }}</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="annually">Annually</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
                         <label for="policy_start_date">Policy Start Date</label>
-                        <input type="text" value= "{{$client->policy_start_date}}" name="policy_start_date" class="form-control" id="policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD">
+                        <input type="text" name="policy_start_date" class="form-control" id="1policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" value="{{ $client->policy_start_date }}" title="Please enter a date in the format YYYY-MM-DD">
                         <div class="invalid-feedback">Please enter a valid date in the format YYYY-MM-DD</div>
-                        </div>
-
-                        
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -233,37 +297,32 @@
                             <label for="policy_id">Policy Taken</label>
                             <select class="form-control" id="policy_id" name="policy_id" required>
                                 @if ($policies->isEmpty())
-                                <option value="">Policy not found, Add policy type first!</option>
+                                    <option value="">Policy not found, Add policy type first!</option>
                                 @else
-                                <option value="">Select Policy Type</option>
-                                @foreach($policies as $policy)
-                                    <option value="{{ $policy->id }}" data-max-coverage="{{ $policy->max_coverage_amount }}">{{ $policy->policy_type }}</option>
-                                @endforeach
+                                    <option value="">Select Policy Type</option>
+                                    @foreach($policies as $policy)
+                                        <option value="{{ $policy->id }}" data-max-coverage="{{ $policy->max_coverage_amount }}" data-coverage-rate="{{ $policy->coverage_rate }}">{{ $policy->policy_type }}</option>
+                                    @endforeach
                                 @endif
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="coverage_amount">Coverage Amount ($)</label>
-                            <div class="slider-container">
-                            @if ($policies->isEmpty())
-                                <option value="">Policy not found, Add policy type first!</option>
-                                @else
-                                <span class="slider-value-current" value="{{ max(0.25 * $policy->max_coverage_amount, 0) }}" id="sliderValue">${{ number_format(0.25 * $policy->max_coverage_amount, 2, '.', ',') }}</span>
-                                <input type="range" name="coverage_amount" value="{{ max(0.25 * $policy->max_coverage_amount, 0) }}" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" id="coverage_amount" required min="{{ max(0.25 * $policy->max_coverage_amount, 0) }}" max="{{ $policy->max_coverage_amount }}" step="1" onchange="updateSliderValue(this.value)">
-                                <div class="slider-value-container">
-                                    <span class="slider-value-min">Min- ${{ number_format(0.25 * $policy->max_coverage_amount, 2, '.', ',') }}</span>
-                                    <span class="slider-value-max">Max- ${{ number_format($policy->max_coverage_amount, 2, '.', ',') }} </span>
-                                    @endif
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="form-group">
-                            <label for="excess_amount">Excess Amount($)</label>
-                            <div class="">
-                                <button class="btn btn-success btn-sm" type="button" onclick="setExcessAmount(0.05)">5% </button>
-                                <button class="btn btn-danger btn-sm" type="button" onclick="setExcessAmount(0.10)">10% </button>
+                        <label for="coverage_amount">Coverage Amount</label>
+                        <div>
+                            <input type="number" name="coverage_amount" class="form-control" id="coverage_amount" required>
+                            <div class="btn-group mt-2">
+                                <button type="button" id="coverage_button_35" class="btn btn-primary">35%</button>
+                                <button type="button" id="coverage_button_65" class="btn btn-primary">65%</button>
+                                <button type="button" id="coverage_button_100" class="btn btn-primary">100%</button>
                             </div>
-                            <input type="number" name="excess_amount" class="form-control" id="excess_amount" required readonly>
+                        </div>
+                    </div>
+
+
+                        <div class="form-group">
+                                    <label for="excess_amount">Excess Amount</label>
+                                    <input type="number" name="excess_amount" class="form-control" id="excess_amount" required>
 
                         </div>
 

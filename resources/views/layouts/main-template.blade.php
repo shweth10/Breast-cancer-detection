@@ -438,47 +438,76 @@
         window.myBar = new Chart(ctx, config);
       })();
     </script>
+
+
+
     <script>
-    function updateSliderValue(val) {
-        document.getElementById('sliderValue').textContent = val;
-    }
+    // Get the coverage amount input field and the policy type select element
+    var coverageAmountInput = document.getElementById('coverage_amount');
+    var policyTypeSelect = document.getElementById('policy_id');
+
+    // Add event listener to the policy type select element
+    policyTypeSelect.addEventListener('change', function() {
+        var selectedOption = policyTypeSelect.options[policyTypeSelect.selectedIndex];
+        var maxCoverageAmount = selectedOption.getAttribute('data-max-coverage');
+        var coverageRate = selectedOption.getAttribute('data-coverage-rate');
+
+        // Calculate coverage values based on the coverage rate
+        var coverage35 = Math.round(maxCoverageAmount * 0.35);
+        var coverage65 = Math.round(maxCoverageAmount * 0.65);
+        var coverage100 = maxCoverageAmount;
+
+        // Set button values and click event listeners
+        document.getElementById('coverage_button_35').innerText = '35% (' + coverage35 + ')';
+        document.getElementById('coverage_button_35').addEventListener('click', function() {
+            coverageAmountInput.value = coverage35;
+        });
+
+        document.getElementById('coverage_button_65').innerText = '65% (' + coverage65 + ')';
+        document.getElementById('coverage_button_65').addEventListener('click', function() {
+            coverageAmountInput.value = coverage65;
+        });
+
+        document.getElementById('coverage_button_100').innerText = '100% (' + coverage100 + ')';
+        document.getElementById('coverage_button_100').addEventListener('click', function() {
+            coverageAmountInput.value = coverage100;
+        });
+    });
 </script>
+
 <script>
-  const policySelect = document.getElementById('policy_id');
-  const coverageSlider = document.getElementById('coverage_amount');
-  const currentCoverageValue = document.getElementById('sliderValue');
-  const sliderValueMin = document.querySelector('.slider-value-min');
-  const sliderValueMax = document.querySelector('.slider-value-max');
+    // Get the coverage amount input field and the policy type select element for Edit Client modal
+    var coverageAmountInput1 = document.getElementById('1coverage_amount');
+    var policyTypeSelect1 = document.getElementById('1policy_id');
 
-  function updateSliderValue(val) {
-    currentCoverageValue.textContent = val;
-  }
+    // Add event listener to the policy type select element for Edit Client modal
+    policyTypeSelect1.addEventListener('change', function() {
+        var selectedOption1 = policyTypeSelect1.options[policyTypeSelect1.selectedIndex];
+        var maxCoverageAmount1 = selectedOption1.getAttribute('data-max-coverage');
+        var coverageRate1 = selectedOption1.getAttribute('data-coverage-rate');
 
-  policySelect.addEventListener('change', function(event) {
-    const maxCoverageAmount = event.target.selectedOptions[0].dataset.maxCoverage;
-    const coverageSliderMin = maxCoverageAmount * 0.25;
-    const coverageSliderMax = maxCoverageAmount;
-    
-    coverageSlider.min = coverageSliderMin;
-    coverageSlider.max = coverageSliderMax;
-    coverageSlider.value = coverageSliderMin;
-    updateSliderValue(coverageSliderMin);
-    
-    sliderValueMin.textContent = `Min-${coverageSliderMin}`;
-    sliderValueMax.textContent = `Max-${coverageSliderMax}`;
-  });
+        // Calculate coverage values based on the coverage rate
+        var coverage351 = Math.round(maxCoverageAmount1 * 0.35);
+        var coverage651 = Math.round(maxCoverageAmount1 * 0.65);
+        var coverage1001 = maxCoverageAmount1;
+
+        // Set button values and click event listeners
+        document.getElementById('1coverage_button_35').innerText = '35% (' + coverage351 + ')';
+        document.getElementById('1coverage_button_35').addEventListener('click', function() {
+            coverageAmountInput1.value = coverage351;
+        });
+
+        document.getElementById('1coverage_button_65').innerText = '65% (' + coverage651 + ')';
+        document.getElementById('1coverage_button_65').addEventListener('click', function() {
+            coverageAmountInput1.value = coverage651;
+        });
+
+        document.getElementById('1coverage_button_100').innerText = '100% (' + coverage1001 + ')';
+        document.getElementById('1coverage_button_100').addEventListener('click', function() {
+            coverageAmountInput1.value = coverage1001;
+        });
+    });
 </script>
-
-<script>
-    function updateSliderValue(value) {
-        document.getElementById('sliderValue').textContent = value;
-    }
-
-    function setExcessAmount(percent) {
-        const coverageAmount = parseFloat(document.getElementsByName('coverage_amount')[0].value);
-        const excessAmount = Math.round(coverageAmount * percent);
-        document.getElementById('excess_amount').value = excessAmount;
-    }
-</script>
+    
 </body>
 </html>
