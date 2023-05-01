@@ -14,6 +14,64 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/dist/css/adminlte.min.css') }}">
   <style>
+    body{
+            font-family: 'Open Sans', sans-serif;
+        }
+        #signUpForm {
+            max-width: 500px;
+        }
+        #signUpForm .form-header .stepIndicator.active {
+            font-weight: 600;
+        }
+        #signUpForm .form-header .stepIndicator.finish {
+            font-weight: 600;
+            color: #5a67d8;
+        }
+        #signUpForm .form-header .stepIndicator::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: 9;
+            width: 20px;
+            height: 20px;
+            background-color: #c3dafe;
+            border-radius: 50%;
+            border: 3px solid #ebf4ff;
+        }
+        #signUpForm .form-header .stepIndicator.active::before {
+            background-color: #a3bffa;
+            border: 3px solid #c3dafe;
+        }
+        #signUpForm .form-header .stepIndicator.finish::before {
+            background-color: #5a67d8;
+            border: 3px solid #c3dafe;
+        }
+        #signUpForm .form-header .stepIndicator::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 8px;
+            width: 100%;
+            height: 3px;
+            background-color: #f3f3f3;
+        }
+        #signUpForm .form-header .stepIndicator.active::after {
+            background-color: #a3bffa;
+        }
+        #signUpForm .form-header .stepIndicator.finish::after {
+            background-color: #5a67d8;
+        }
+        #signUpForm .form-header .stepIndicator:last-child:after {
+            display: none;
+        }
+        #signUpForm input.invalid {
+            border: 2px solid #ffaba5;
+        }
+        #signUpForm .step {
+          display: none;
+        }
     /* Position search bar to the right side of the page */
     .search-container {
         display: flex;
@@ -35,6 +93,11 @@
         color: #aaa;
     }
 </style>
+
+<!-- tailwind css -->
+<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" />
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
     <link rel="stylesheet" href="\css\tailwind.css">
     <link rel="stylesheet" href="\css\index.css">
@@ -508,6 +571,81 @@
         });
     });
 </script>
+
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+        
+        function showTab(n) {
+          // This function will display the specified tab of the form...
+          var x = document.getElementsByClassName("step");
+          x[n].style.display = "block";
+          //... and fix the Previous/Next buttons:
+          if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+          } else {
+            document.getElementById("prevBtn").style.display = "inline";
+          }
+          if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+          } else {
+            document.getElementById("nextBtn").innerHTML = "Next";
+          }
+          //... and run a function that will display the correct step indicator:
+          fixStepIndicator(n)
+        }
+        
+        function nextPrev(n) {
+          // This function will figure out which tab to display
+          var x = document.getElementsByClassName("step");
+          // Exit the function if any field in the current tab is invalid:
+          if (n == 1 && !validateForm()) return false;
+          // Hide the current tab:
+          x[currentTab].style.display = "none";
+          // Increase or decrease the current tab by 1:
+          currentTab = currentTab + n;
+          // if you have reached the end of the form...
+          if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("signUpForm").submit();
+            return false;
+          }
+          // Otherwise, display the correct tab:
+          showTab(currentTab);
+        }
+        
+        function validateForm() {
+          // This function deals with validation of the form fields
+          var x, y, i, valid = true;
+          x = document.getElementsByClassName("step");
+          y = x[currentTab].getElementsByTagName("input");
+          // A loop that checks every input field in the current tab:
+          for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+              // add an "invalid" class to the field:
+              y[i].className += " invalid";
+              // and set the current valid status to false
+              valid = false;
+            }
+          }
+          // If the valid status is true, mark the step as finished and valid:
+          if (valid) {
+            document.getElementsByClassName("stepIndicator")[currentTab].className += " finish";
+          }
+          return valid; // return the valid status
+        }
+        
+        function fixStepIndicator(n) {
+          // This function removes the "active" class of all steps...
+          var i, x = document.getElementsByClassName("stepIndicator");
+          for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+          }
+          //... and adds the "active" class on the current step:
+          x[n].className += " active";
+        }
+  </script>
     
 </body>
 </html>

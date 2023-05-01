@@ -253,32 +253,33 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('client.store') }}">
+                    <form method="POST" form id="signUpForm" class="p-12 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100 mb-8"     action="{{ route('client.store') }}">
                         @csrf
-                        <div class="form-group">
-                        <label for="client_fname">Client Name</label>
-                        <input type="text" name="client_fname" class="form-control" id="client_fname" required>
+                        <div class="form-header flex gap-3 mb-4 text-xs text-center">
+                            <span class="stepIndicator flex-1 pb-8 relative">Personal Details</span>
+                            <span class="stepIndicator flex-1 pb-8 relative">Policy Info</span>
                         </div>
-                        <div class="form-group">
-                        <label for="Age">Age</label> (Note, if age is under 25 then extra $250 is added to excess)
-                        <input type="number" name="Age" class="form-control" id="Age" required>
+                <div class="step">  
+                        <h1 for="client_fname" class="text-md text-gray-700 leading-tight text-center mt-8 mb-5">Enter Client Details</h1>
+                        <div class="mb-6">
+                        <input type="text" placeholder= "Full Name" name="client_fname" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'"  id="client_fname" required>
                         </div>
-                        <div class="form-group">
-                        <label for="driving_license_number">Driving License #</label>
-                        <input type="number" name="driving_license_number" class="form-control" id="driving_license_number" required>
+                        <div class="mb-6">
+                        <input type="number" placeholder="Age" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="Age" class="form-control" id="Age" required>
                         </div>
-                        <div class="form-group">
-                            <label for="client_email">Email</label>
-                            <input type="email" name="client_email" class="form-control" id="client_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        <div class="mb-6">
+                        <input type="number" placeholder= "Driving License Number" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="driving_license_number" class="form-control" id="driving_license_number" required>
+                        </div>
+                        <div class="mb-6">
+                            <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="client_email" class="form-control" id="client_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                             <div class="invalid-feedback">Please enter a valid email address</div>
                         </div>
-                        <div class="form-group">
-                        <label for="phone_number">Phone Number</label>
-                        <input type="number" name="phone_number" class="form-control" id="phone_number" required>
+                        <div class="mb-6">
+                        <input type="number" placeholder="Phone Number" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="phone_number" class="form-control" id="phone_number" required>
                         </div>
-                        <div class="form-group">
-                        <label for="vehicle_model">Vehicle Make</label>
-                        <select name="vehicle_model" class="form-control" id="vehicle_model" required>
+                        <div class="mb-6">
+                        <select class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200"  name="vehicle_model" class="form-control" id="vehicle_model" required>
+                                <option value="">Vehicle Make</option>
                                 <option value=99>Toyota</option>
                                 <option value=90>Honda</option>
                                 <option value=85>Ford</option>
@@ -288,14 +289,15 @@
                                 <option value=70>Kia</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                        <label for="vehicle_registration">Vehicle Registration</label>
-                        <input type="text" name="vehicle_registration" class="form-control" id="vehicle_registration" required>
+                        <div class="mb-6">
+                        <input type="text" placeholder="Vehicle Registration" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="vehicle_registration" class="form-control" id="vehicle_registration" required>
                         </div>
+                </div>
+                <div class= "step">
 
-                        <div class="form-group" id="policy_id_field">
+                        <div class="mb-6" id="policy_id_field">
                             <label for="policy_id">Policy Taken</label>
-                            <select class="form-control" id="policy_id" name="policy_id" required>
+                            <select class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="policy_id" name="policy_id" required>
                                 @if ($policies->isEmpty())
                                     <option value="">Policy not found, Add policy type first!</option>
                                 @else
@@ -307,10 +309,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                        <label for="coverage_amount">Coverage Amount</label>
+                        <div class="mb-6">
                         <div>
-                            <input type="number" name="coverage_amount" class="form-control" id="coverage_amount" required>
+                            <input type="number" placeholder= "Coverage Amount" name="coverage_amount" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="coverage_amount" required>
                             <div class="btn-group mt-2">
                                 <button type="button" id="coverage_button_35" class="btn btn-primary">35%</button>
                                 <button type="button" id="coverage_button_65" class="btn btn-primary">65%</button>
@@ -320,28 +321,31 @@
                     </div>
 
 
-                        <div class="form-group">
-                                    <label for="excess_amount">Excess Amount</label>
-                                    <input type="number" name="excess_amount" class="form-control" id="excess_amount" required>
+                        <div class="mb-6">
+                                    <input type="number" name="excess_amount" placeholder = "Excess Amount" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="excess_amount" required>
 
                         </div>
 
-                        <div class="form-group">
-                            <label for="payment_period">Payment Period</label>
-                            <select name="payment_period" class="form-control" id="payment_period" required>
+                        <div class="mb-6">
+                            <select name="payment_period" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="payment_period" required>
+                                <option value="">Payment Period</option>
                                 <option value="monthly">Monthly</option>
                                 <option value="quarterly">Quarterly</option>
                                 <option value="annually">Annually</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                        <label for="policy_start_date">Policy Start Date</label>
-                        <input type="text" name="policy_start_date" class="form-control" id="policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD">
+                        <div class="mb-6">
+                        <input type="text" name="policy_start_date" placeholder="Policy Start Date" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD">
                         <div class="invalid-feedback">Please enter a valid date in the format YYYY-MM-DD</div>
                         </div>
+                </div>
 
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- start previous / next buttons -->
+                        <div class="form-footer flex gap-3">
+                            <button type="button" id="prevBtn" class="flex-1 focus:outline-none border border-gray-300 py-2 px-5 rounded-lg shadow-sm text-center text-gray-700 bg-white hover:bg-gray-100 text-lg" onclick="nextPrev(-1)">Previous</button>
+                            <button type="button" id="nextBtn" class="flex-1 border border-transparent focus:outline-none p-3 rounded-md text-center text-white bg-indigo-600 hover:bg-indigo-700 text-lg" onclick="nextPrev(1)">Next</button>
+                        </div>
+                        <!-- end previous / next buttons -->
                     </form>
                 </div>
             </div>
