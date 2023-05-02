@@ -136,27 +136,22 @@
                 <div class="modal-body">
                     <form method="POST" action="{{ route('policy.store') }}">
                         @csrf
-                        <div class="form-group">
-                        <label for="policy_type">Policy Type</label>
-                        <input type="text" name="policy_type" class="form-control" id="policy_type" required>
+                        <div class="mb-6">
+                        <input type="text" placeholder= "Policy Type" required autocomplete="off" name="policy_type" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="policy_type" required>
                         </div>
-                        <div class="form-group">
-                        <label for="coverage_information">Coverage Information</label>
-                        <input type="text" name="coverage_information" class="form-control" id="coverage_information" required>
+                        <div class="mb-6">
+                        <input type="text" placeholder = "Coverage Information" required autocomplete="off" name="coverage_information" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="coverage_information" required>
                         </div>
-                        <div class="form-group">
-                        <label for="max_coverage_amount">Maximum Coverage Amount</label>
-                        <input type="number" name="max_coverage_amount" class="form-control" id="max_coverage_amount" required>
+                        <div class="mb-6">
+                        <input type="number" placeholder = "Maximum Coverage Amount $" required autocomplete="off" name="max_coverage_amount" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="max_coverage_amount" required>
                         </div>
-                        <div class="form-group">
-                        <label for="policy_duration">Policy Duration(Years)</label>
-                        <input type="number" name="policy_duration" class="form-control" id="policy_duration" required>
+                        <div class="mb-6">
+                        <input type="number" placeholder = "Policy Duration (Years)" required autocomplete="off"  name="policy_duration" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200"id="policy_duration" required>
                         </div>
-                        <div class="form-group">
-                        <label for="policy_duration">Coverage Rate(%)</label>
-                        <input type="number" name="coverage_rate" class="form-control" id="coverage_rate" required>
+                        <div class="mb-6">
+                        <input type="number" placeholder = "Coverage Rate %" required autocomplete="off" name="coverage_rate" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="coverage_rate" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="flex-1 border border-transparent focus:outline-none p-3 rounded-md text-center text-white bg-indigo-600 hover:bg-indigo-700 text-lg">Submit</button>
                     </form>
                 </div>
 

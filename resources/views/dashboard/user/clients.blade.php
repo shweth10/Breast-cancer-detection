@@ -260,37 +260,21 @@
                             <span class="stepIndicator flex-1 pb-8 relative">Policy Info</span>
                         </div>
                 <div class="step">  
-                        <h1 for="client_fname" class="text-md text-gray-700 leading-tight text-center mt-8 mb-5">Enter Client Details</h1>
                         <div class="mb-6">
-                        <input type="text" placeholder= "Full Name" name="client_fname" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'"  id="client_fname" required>
+                        <input type="text" placeholder= "Full Name" required autocomplete="off" name="client_fname" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'"  id="client_fname" required>
                         </div>
                         <div class="mb-6">
-                        <input type="number" placeholder="Age" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="Age" class="form-control" id="Age" required>
+                        <input type="number" placeholder="Age" required autocomplete="off" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="Age" class="form-control" id="Age" required>
                         </div>
                         <div class="mb-6">
-                        <input type="number" placeholder= "Driving License Number" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="driving_license_number" class="form-control" id="driving_license_number" required>
+                        <input type="number" placeholder= "Driving License Number" required autocomplete="off" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="driving_license_number" class="form-control" id="driving_license_number" required>
                         </div>
                         <div class="mb-6">
-                            <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="client_email" class="form-control" id="client_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <input type="email" placeholder="Email" required autocomplete="off" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="client_email" class="form-control" id="client_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                             <div class="invalid-feedback">Please enter a valid email address</div>
                         </div>
                         <div class="mb-6">
-                        <input type="number" placeholder="Phone Number" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="phone_number" class="form-control" id="phone_number" required>
-                        </div>
-                        <div class="mb-6">
-                        <select class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200"  name="vehicle_model" class="form-control" id="vehicle_model" required>
-                                <option value="">Vehicle Make</option>
-                                <option value=99>Toyota</option>
-                                <option value=90>Honda</option>
-                                <option value=85>Ford</option>
-                                <option value=80>Nissan</option>
-                                <option value=75>Chevrolet</option>
-                                <option value=72>Hyundai</option>
-                                <option value=70>Kia</option>
-                            </select>
-                        </div>
-                        <div class="mb-6">
-                        <input type="text" placeholder="Vehicle Registration" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="vehicle_registration" class="form-control" id="vehicle_registration" required>
+                        <input type="number" placeholder="Phone Number" required autocomplete="off" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="phone_number" class="form-control" id="phone_number" required>
                         </div>
                 </div>
                 <div class= "step">
@@ -308,6 +292,21 @@
                                 @endif
                             </select>
                         </div>
+                        <div class="mb-6">
+                        <select class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200"  name="vehicle_model" class="form-control" id="vehicle_model" required>
+                                <option value="">Vehicle Make</option>
+                                <option value=99>Toyota</option>
+                                <option value=90>Honda</option>
+                                <option value=85>Ford</option>
+                                <option value=80>Nissan</option>
+                                <option value=75>Chevrolet</option>
+                                <option value=72>Hyundai</option>
+                                <option value=70>Kia</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                        <input type="text" placeholder="Vehicle Registration" required autocomplete="off" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" name="vehicle_registration" class="form-control" id="vehicle_registration" required>
+                        </div>
 
                         <div class="mb-6">
                         <div>
@@ -322,7 +321,7 @@
 
 
                         <div class="mb-6">
-                                    <input type="number" name="excess_amount" placeholder = "Excess Amount" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="excess_amount" required>
+                                    <input type="number" name="excess_amount" required autocomplete="off" placeholder = "Excess Amount" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="excess_amount" required>
 
                         </div>
 
@@ -335,7 +334,7 @@
                             </select>
                         </div>
                         <div class="mb-6">
-                        <input type="text" name="policy_start_date" placeholder="Policy Start Date" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD">
+                        <input type="text" name="policy_start_date" required autocomplete="off" placeholder="Policy Start Date (YYYY-MM-DD)" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD">
                         <div class="invalid-feedback">Please enter a valid date in the format YYYY-MM-DD</div>
                         </div>
                 </div>
