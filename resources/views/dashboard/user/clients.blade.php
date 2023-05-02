@@ -26,6 +26,8 @@
             <th>Excess Amount</th>
             <th>Premium Amount</th>
             <th>Payment Period</th>
+            <th></th>
+            <th>Actions</th>
 
         </tr>
     </thead>

@@ -20,6 +20,8 @@
             <th>Maximum Coverage Amount</th>
             <th>Policy Duration (Years)</th>
             <th>Coverage Rate (%)</th>
+            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
