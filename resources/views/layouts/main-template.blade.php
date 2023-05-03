@@ -521,17 +521,17 @@
         var coverage100 = maxCoverageAmount;
 
         // Set button values and click event listeners
-        document.getElementById('coverage_button_35').innerText = '35% (' + coverage35 + ')';
+        document.getElementById('coverage_button_35').innerText = 'Basic (' + coverage35 + ')';
         document.getElementById('coverage_button_35').addEventListener('click', function() {
             coverageAmountInput.value = coverage35;
         });
 
-        document.getElementById('coverage_button_65').innerText = '65% (' + coverage65 + ')';
+        document.getElementById('coverage_button_65').innerText = 'Standard (' + coverage65 + ')';
         document.getElementById('coverage_button_65').addEventListener('click', function() {
             coverageAmountInput.value = coverage65;
         });
 
-        document.getElementById('coverage_button_100').innerText = '100% (' + coverage100 + ')';
+        document.getElementById('coverage_button_100').innerText = 'Executive (' + coverage100 + ')';
         document.getElementById('coverage_button_100').addEventListener('click', function() {
             coverageAmountInput.value = coverage100;
         });
@@ -555,17 +555,17 @@
         var coverage1001 = maxCoverageAmount1;
 
         // Set button values and click event listeners
-        document.getElementById('1coverage_button_35').innerText = '35% (' + coverage351 + ')';
+        document.getElementById('1coverage_button_35').innerText = 'Basic (' + coverage351 + ')';
         document.getElementById('1coverage_button_35').addEventListener('click', function() {
             coverageAmountInput1.value = coverage351;
         });
 
-        document.getElementById('1coverage_button_65').innerText = '65% (' + coverage651 + ')';
+        document.getElementById('1coverage_button_65').innerText = 'Standard (' + coverage651 + ')';
         document.getElementById('1coverage_button_65').addEventListener('click', function() {
             coverageAmountInput1.value = coverage651;
         });
 
-        document.getElementById('1coverage_button_100').innerText = '100% (' + coverage1001 + ')';
+        document.getElementById('1coverage_button_100').innerText = 'Executive (' + coverage1001 + ')';
         document.getElementById('1coverage_button_100').addEventListener('click', function() {
             coverageAmountInput1.value = coverage1001;
         });

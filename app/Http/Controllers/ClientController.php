@@ -103,33 +103,10 @@ class ClientController extends Controller
         }// update payment period
 $client->payment_period = $requested_payment_period;
 
-// convert premium amount based on requested payment period
-if ($original_payment_period == 'monthly' && $requested_payment_period == 'annually') {
-    $client->premium_amount *= 12;
-} elseif ($original_payment_period == 'monthly' && $requested_payment_period == 'quarterly') {
-    $client->premium_amount *= 4;
-} elseif ($original_payment_period == 'quarterly' && $requested_payment_period == 'monthly') {
-    $client->premium_amount /= 4;
-} elseif ($original_payment_period == 'quarterly' && $requested_payment_period == 'annually') {
-    $client->premium_amount *= 4;
-} elseif ($original_payment_period == 'annually' && $requested_payment_period == 'monthly') {
-    $client->premium_amount /= 12;
-} elseif ($original_payment_period == 'annually' && $requested_payment_period == 'quarterly') {
-    $client->premium_amount /= 4;
-}
-
 // Calculate premium_amount using the formula
 $premium = ($client->coverage_amount * $policyRate/100) - ($client->excess_amount * $policyRate/100);
 $premium -= ($client->excess_amount * $policyRate/100) * ($client->vehicle_model/100);
 
-// update premium amount based on new payment period
-if ($requested_payment_period == 'monthly') {
-    $client->premium_amount = $premium;
-} elseif ($requested_payment_period == 'quarterly') {
-    $client->premium_amount = $premium * 3;
-} elseif ($requested_payment_period == 'annually') {
-    $client->premium_amount = $premium * 12;
-}
 
 $client->vehicle_registration = $request->input('vehicle_registration');
 $client->policy_start_date = $request->input('policy_start_date');

@@ -105,21 +105,30 @@
 
                             </div> <!-- navbar collapse -->
                             <div>
-                                @if (Route::has('user.login'))
-                                    <div>
-                                        @auth
-                                            <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.home') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                                        @else
-                                            <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.login') }}" class="text-sm text-gray-700 underline">Log in</a>
+    @if (Route::has('user.login'))
+        <div>
+            @auth
+                <a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.home') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+            @else
+                <label class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold">
+                    Log in as:
+                    <select onchange="window.location.href=this.value">
+                        <option value="{{ route('user.home') }}"></option>
+                        <option value="{{ route('user.login') }}">Admin</option>
+                        <option value="{{ route('doctor.login') }}">Client</option>
+                        <option value="{{ route('user.login') }}">Claims Staff</option>
+                        <option value="{{ route('user.login') }}">Claims Manager</option>
+                    </select>
+                </label>
 
-                                            @if (Route::has('user.register'))
-                                                <!--<a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> -->
-                                            @endif
-                                        @endauth
-                                    </div>
-                                @endif
-                        
-                            </div>
+                @if (Route::has('user.register'))
+                    <!--<a class="m-2 inline-block rounded bg-black py-1 px-2 text-sm font-semibold text-white" href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> -->
+                @endif
+            @endauth
+        </div>
+    @endif
+</div>
+
 
 
                         </nav> <!-- navbar -->

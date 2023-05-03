@@ -204,9 +204,9 @@
                         <div>
                         <input type="number" name="coverage_amount" class="form-control" id="1coverage_amount" value="{{ $client->coverage_amount }}" required>
                             <div class="btn-group mt-2">
-                                <button type="button" id="1coverage_button_35" class="btn btn-primary">35%</button>
-                                <button type="button" id="1coverage_button_65" class="btn btn-primary">65%</button>
-                                <button type="button" id="1coverage_button_100" class="btn btn-primary">100%</button>
+                                <button type="button" id="1coverage_button_35" class="btn btn-primary">Basic</button>
+                                <button type="button" id="1coverage_button_65" class="btn btn-primary">Standard</button>
+                                <button type="button" id="1coverage_button_100" class="btn btn-primary">Executive</button>
                             </div>
                         </div>
                     </div>
@@ -314,9 +314,9 @@
                         <div>
                             <input type="number" placeholder= "Coverage Amount" name="coverage_amount" class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" id="coverage_amount" required>
                             <div class="btn-group mt-2">
-                                <button type="button" id="coverage_button_35" class="btn btn-primary">35%</button>
-                                <button type="button" id="coverage_button_65" class="btn btn-primary">65%</button>
-                                <button type="button" id="coverage_button_100" class="btn btn-primary">100%</button>
+                                <button type="button" id="coverage_button_35" class="btn btn-primary">Basic</button>
+                                <button type="button" id="coverage_button_65" class="btn btn-primary">Standard</button>
+                                <button type="button" id="coverage_button_100" class="btn btn-primary">Executive</button>
                             </div>
                         </div>
                     </div>

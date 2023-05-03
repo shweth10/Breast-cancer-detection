@@ -85,7 +85,7 @@ class DoctorController extends Controller
            'email'=>'required|email|exists:doctors,email',
            'password'=>'required|min:5|max:30'
         ],[
-            'email.exists'=>'This email is not exists in doctors table'
+            'email.exists'=>'This email does not exist in clients table'
         ]);
 
         $creds = $request->only('email','password');
