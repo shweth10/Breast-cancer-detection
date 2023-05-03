@@ -53,6 +53,12 @@
                     <small>User Login</small>
                   </div>
                   <form action="{{ route('user.check') }}" method="post" autocomplete="off">
+                  @if (session('warning'))
+                      <div class="alert alert-warning">
+                          {{ session('warning') }}
+                      </div>
+                  @endif
+
                     @if (Session::get('fail'))
                         <div class="alert alert-danger">
                             {{ Session::get('fail') }}
