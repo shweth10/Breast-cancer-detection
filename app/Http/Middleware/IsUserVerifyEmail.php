@@ -19,7 +19,7 @@ class IsUserVerifyEmail
     {
         if(!Auth::guard('web')->user()->email_verified){
             Auth::guard('web')->logout();
-            return redirect()->route('user.login')->with('fail','Verification is required, please check your email.')->withInput();
+            return redirect()->route('user.login')->with('fail','You need to confirm your account. We have sent you an activation link, please check your email')->withInput();
         }
         return $next($request);
     }
