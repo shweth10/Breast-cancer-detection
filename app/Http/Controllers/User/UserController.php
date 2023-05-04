@@ -80,42 +80,91 @@ class UserController extends Controller
     public function verify(Request $request){
         $token = $request->token;
         $verifyUser = VerifyUser::where('token', $token)->first();
-        if(!is_null($verifyUser)){
+        
+        if (!is_null($verifyUser)) {
             $user = $verifyUser->user;
-
-            if(!$user->email_verified){
+            
+            if (!$user->email_verified) {
                 $verifyUser->user->email_verified = 1;
                 $verifyUser->user->save();
-
-                return redirect()->route('user.login')->with('info','Your email is verified successfully. You can now login')->with('verifiedEmail', $user->email);
-            }else{
-                 return redirect()->route('user.login')->with('info','Your email is already verified. You can now login')->with('verifiedEmail', $user->email);
+                
+                return redirect()->route('user.login')->with('info', 'Your email is verified successfully. You can now login')->with('verifiedEmail', $user->email);
+                $user = Auth::user();
+                $user->email_verified = 0;
+                $user->save();
+            } else {
+                return redirect()->route('user.login')->with('info', 'Your email is already verified. You can now login')->with('verifiedEmail', $user->email);
+                $user = Auth::user();
+                $user->email_verified = 0;
+                $user->save();
             }
         }
     }
 
     function check(Request $request){
-        //Validate inputs
+        // Validate inputs
         $request->validate([
-           'email'=>'required|email|exists:users,email',
-           'password'=>'required|min:5|max:30'
-        ],[
-            'email.exists'=>'This email does not exist on users table'
+           'email' => 'required|email|exists:users,email',
+           'password' => 'required|min:5|max:30'
+        ], [
+            'email.exists' => 'This email does not exist on the users table'
         ]);
-
-        $creds = $request->only('email','password');
-        if( Auth::guard('web')->attempt($creds) ){
-            return redirect()->route('user.home');
-        }else{
-            return redirect()->route('user.login')->with('fail','Incorrect credentials');
+    
+        $creds = $request->only('email', 'password');
+        if (Auth::guard('web')->attempt($creds)) {
+            $user = Auth::guard('web')->user();
+            
+            if (!$user->email_verified) {
+                $token = $user->id . hash('sha256', \Str::random(120));
+                $verifyURL = route('user.verify', ['token' => $token, 'service' => 'Email_verification']);
+    
+                VerifyUser::create([
+                    'user_id' => $user->id,
+                    'token' => $token,
+                ]);
+    
+                $message = 'Dear <b>'.$user->name.'</b>';
+                $message .= ' Thanks for signing up, we just need you to verify your email address to complete setting up your account.';
+    
+                $mail_data = [
+                    'recipient' => $user->email,
+                    'fromEmail' => $user->email,
+                    'fromName' => $user->name,
+                    'subject' => 'Email Verification',
+                    'body' => $message,
+                    'actionLink' => $verifyURL,
+                ];
+    
+                \Mail::send('email-template', $mail_data, function($message) use ($mail_data){
+                    $message->to($mail_data['recipient'])
+                            ->from($mail_data['fromEmail'], $mail_data['fromName'])
+                            ->subject($mail_data['subject']);
+                });
+                
+                $user->email_verified = 0;
+                $user->save();
+                
+                return redirect()->route('user.login')->with('info', 'Verification link has been sent to your email. Please check your inbox, including the spam folder.');
+            } else {
+                
+                return redirect()->route('user.home');
+            }
+        } else {
+            return redirect()->route('user.login')->with('fail', 'Incorrect credentials');
         }
     }
+    
+    
 
     function logout(){
+        if ($user = Auth::user()) {
+            $user->email_verified = 0;
+            $user->save();
+        }
         Auth::guard('web')->logout();
         return redirect('/');
     }
-
+    
 
     public function showForgotForm(){
         return view('dashboard.user.forgot');
