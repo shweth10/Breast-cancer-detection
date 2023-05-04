@@ -102,19 +102,61 @@ class UserController extends Controller
         ],[
             'email.exists'=>'This email does not exist on users table'
         ]);
-
+    
         $creds = $request->only('email','password');
+        $user = User::where('email', $creds['email'])->first();
+    
+        if (!$user) {
+            return redirect()->route('user.login')->with('fail','Incorrect credentials');
+        }
+    
+        if ($user->email_verified === 0) {
+            $token = $user->id.hash('sha256', \Str::random(120));
+            $verifyURL = route('user.verify',['token'=>$token,'service'=>'Email_verification']);
+    
+            VerifyUser::create([
+                'user_id'=>$user->id,
+                'token'=>$token,
+            ]);
+    
+            $message = 'Dear <b>'.$user->name.'</b>';
+            $message.= ' Thanks for signing up, we just need you to verify your email address to complete setting up your account.';
+    
+            $mail_data = [
+                'recipient'=>$user->email,
+                'fromEmail'=>'noreply@example.com',
+                'fromName'=>'Your App Name',
+                'subject'=>'Email Verification',
+                'body'=>$message,
+                'actionLink'=>$verifyURL,
+            ];
+    
+            \Mail::send('email-template', $mail_data, function($message) use ($mail_data){
+                $message->to($mail_data['recipient'])
+                        ->from($mail_data['fromEmail'], $mail_data['fromName'])
+                        ->subject($mail_data['subject']);
+            });
+    
+            return redirect()->route('user.login')->with('fail', 'Please check your Email to verify your account, Thank you!.');
+        }
+    
         if( Auth::guard('web')->attempt($creds) ){
             return redirect()->route('user.home');
         }else{
             return redirect()->route('user.login')->with('fail','Incorrect credentials');
         }
     }
-
+    
     function logout(){
+        $verifyUser = Auth::user();
+        if (!is_null($verifyUser)) {
+            $verifyUser->email_verified = 0;
+            $verifyUser->save();
+        }
         Auth::guard('web')->logout();
         return redirect('/');
     }
+    
 
 
     public function showForgotForm(){
