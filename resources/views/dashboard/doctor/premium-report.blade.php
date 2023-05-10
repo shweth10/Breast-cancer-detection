@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Client Report</title>
+    <title>Premium Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,18 +40,13 @@
     </style>
 </head>
 <body>
-    @php
-    $clients= App\Models\Client::all();
-    $policies=App\Models\Policy::all();
-    $payments=App\Models\Payment::all();
-    @endphp
     <p>Company Email: {{ auth()->user()->email }}</p>
     <p>Date: <?php echo date('F j, Y'); ?></p>
     <header>
         <h1>Car Policy Hub</h1>
         <h2>Insurer: {{ auth()->user()->name }}</h2>
     </header>
-    <h3 style="text-decoration: underline">Client Report:</h3>
+    <h3 style="text-decoration: underline">Premium Report:</h3>
     <table id="client-table">
         <tr>
             <th>Client ID:</th>
@@ -70,6 +65,14 @@
             <td>{{ $client->policy_type }}</td>
         </tr>
         <tr>
+            <th>Policy Duration:</th>
+            <td>{{ $client->policy_duration }} Years</td>
+        </tr>
+        <tr>
+            <th>Payment Period:</th>
+            <td>{{ $client->payment_period }}</td>
+        </tr>
+        <tr>
             <th>Policy Start Date:</th>
             <td>{{ $client->policy_start_date }}</td>
         </tr>
@@ -78,28 +81,20 @@
             <td>{{ $client->policy_end_date }}</td>
         </tr>
         <tr>
-            <th>Age:</th>
-            <td>{{ $client->Age }}</td>
+            <th>Last Payment Date:</th>
+            <td>{{ $client->payment_date }}</td>
         </tr>
         <tr>
-            <th>Driving License Number:</th>
-            <td>{{ $client->driving_license_number }}</td>
+            <th>Next Payment Due Date:</th>
+            <td>{{ $client->premium_due_date }}</td>
         </tr>
         <tr>
-            <th>Client Email:</th>
-            <td>{{ $client->client_email }}</td>
+            <th>Coverage Amount:</th>
+            <td>${{ number_format($client->coverage_amount, 2, '.', ',') }}</td>
         </tr>
         <tr>
-            <th>Phone Number:</th>
-            <td>{{ $client->phone_number }}</td>
-        </tr>
-        <tr>
-            <th>Vehicle Model:</th>
-            <td>{{ $client->vehicle_model }}</td>
-        </tr>
-        <tr>
-            <th>Vehicle Registration:</th>
-            <td>{{ $client->vehicle_registration }}</td>
+            <th>Premium To Be Paid:</th>
+            <td>${{ number_format($client->premium_amount, 2, '.', ',') }}</td>
         </tr>
         <tr>
             <th>Client Details Created on:</th>

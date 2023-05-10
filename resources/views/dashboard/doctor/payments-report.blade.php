@@ -44,6 +44,7 @@
     $policies=App\Models\Policy::all();
     $payments=App\Models\Payment::all();
     @endphp
+    
 	<p>Company Email: {{ auth()->user()->email }}</p>
     <p>Date: <?php echo date('F j, Y'); ?></p>
     <header>

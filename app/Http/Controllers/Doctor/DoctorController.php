@@ -96,11 +96,16 @@ class DoctorController extends Controller
             return redirect()->route('doctor.login')->with('fail','Incorrect Credentials');
         }
     }
-
     function logout(){
+        $verifyDoctor = Auth::guard('doctor')->user();
+        if (!is_null($verifyDoctor)) {
+            $verifyDoctor->email_verified = 0;
+            $verifyDoctor->save();
+        }
         Auth::guard('doctor')->logout();
         return redirect('/');
-    }
+    } 
+    
 
     public function showForgotForm(){
         return view('dashboard.doctor.forgot');

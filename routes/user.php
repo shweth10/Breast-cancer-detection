@@ -34,7 +34,6 @@ Route::prefix('user')->name('user.')->group(function(){
 
 Route::post('/policy', [App\Http\Controllers\PolicyController::class, 'store'])->name('policy.store');
 Route::post('/client', [App\Http\Controllers\ClientController::class, 'store'])->name('client.store');
-Route::post('/payment', [App\Http\Controllers\PaymentController::class, 'store'])->name('payment.store');
 
 
 Route::delete('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'destroy'])->name('policy.destroy');

@@ -16,10 +16,12 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('client_fname');
-            $table->integer('Insurer_id');
+            $table->string('card_fname');
+            $table->string('exp_date');
             $table->string('client_email');
-            $table->string('payment_method');
             $table->integer('premium_amount');
+            $table->integer('card_number');
+            $table->integer('cvv');
             $table->string('payment_period');
             $table->string('policy_type');
             $table->date('payment_date');

@@ -6,8 +6,8 @@
     <div class="col-md-12 mt-3">
     </div>
     @php
-    $policies = App\Models\Policy::where('insurer_id', auth()->user()->id)->get();    
-    $clients= App\Models\Client::where('insurer_id', auth()->user()->id)->get();
+    $policies = App\Models\Policy::all();    
+    $clients= App\Models\Client::all();
     @endphp
 
     <h3>Policy Details</h3>

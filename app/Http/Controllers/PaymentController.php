@@ -23,13 +23,15 @@ class PaymentController extends Controller
 
         $payment = new Payment();
         $payment->client_fname = $client->client_fname;
-        $payment->Insurer_id = auth()->user()->id;
         $payment->client_email = $client->client_email;
         $payment->payment_period = $client->payment_period;
-        $payment->payment_method = $request->input('payment_method');
         $payment->premium_amount = $client->premium_amount;
         $payment->policy_type = $client->policy_type;
         $payment->payment_date = $request->input('payment_date');
+        $payment->card_fname = $request->input('card_fname');
+        $payment->cvv = $request->input('cvv');
+        $payment->exp_date = $request->input('exp_date');
+        $payment->card_number = $request->input('card_number');
         $payment->next_payment_date = $payment->calculatePremiumDueDate();
 
         $payment->save();
@@ -38,7 +40,7 @@ class PaymentController extends Controller
         $client->payment_date = $payment->payment_date;
         $client->save();
 
-        return redirect()->route('user.payments');
+        return redirect()->route('doctor.payments');
     }
     public function generatePaymentsReport()
 {

@@ -2,9 +2,9 @@
 @section('title', isset($title) ? $title : 'Dashboard | Normal User')
 @section('content')
 @php
-    $clients= App\Models\Client::where('insurer_id', auth()->user()->id)->get();
-    $policies=App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
-    $payments=App\Models\Payment::where('insurer_id', auth()->user()->id)->get();
+    $clients= App\Models\Client::all();
+    $policies=App\Models\Policy::all();
+    $payments=App\Models\Payment::all();
 @endphp
 <div class="row">
     <div class="col-md-12 mt-3">
@@ -24,7 +24,7 @@
                             Policies Offered
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
-                          {{ App\Models\Policy::where('Insurer_id', auth()->user()->id)->count() }}
+                          {{ App\Models\Policy::all()->count() }}
                           </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -53,7 +53,7 @@
                             Registered Clients
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
-                          {{ App\Models\Client::where('Insurer_id', auth()->user()->id)->count() }}
+                          {{ App\Models\Client::all()->count() }}
                           </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -82,7 +82,7 @@
                             Policy Sales
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
-                          ${{ App\Models\Payment::where('Insurer_id', auth()->user()->id)->sum('premium_amount') }}
+                          ${{ App\Models\Payment::all()->sum('premium_amount') }}
                           </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">

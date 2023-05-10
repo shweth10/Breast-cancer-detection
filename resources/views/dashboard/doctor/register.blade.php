@@ -6,57 +6,68 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Doctor Register</title>
     <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
-    <link rel="stylesheet" href="\css\loginstyles.css">
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="login" style="margin-top: -250px;>
-                 <h4>Doctor Register</h4><hr>
-                 <form action="{{ route('doctor.create') }}" method="post">
+            <div class="col-md-6 offset-md-3 form-container">
+                <form action="{{ route('doctor.create') }}" method="post">
+                    <h3 class="text-center">Doctor Register</h3>
+                    <hr>
                     @if (Session::get('success'))
                         <div class="alert alert-success">
                             {{ Session::get('success') }}
                         </div>
                     @endif
                     @if (Session::get('fail'))
-                    <div class="alert alert-danger">
-                        {{ Session::get('fail') }}
-                    </div>
+                        <div class="alert alert-danger">
+                            {{ Session::get('fail') }}
+                        </div>
                     @endif
 
                     @csrf
-                     <div class="form-group">
-                         <label for="name"style="color: white; font-weight: bold;">Name</label>
-                         <input type="text" class="form-control" name="name" placeholder="Enter full name" value="{{ old('name') }}">
-                         <span class="text-danger">@error('name'){{ $message }}@enderror</span>
-                     </div>
-                     <div class="form-group">
-                        <label for="email"style="color: white; font-weight: bold;">Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}">
-                        <span class="text-danger">@error('email'){{ $message }}@enderror</span>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter full name" value="{{ old('name') }}">
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="hospital"style="color: white; font-weight: bold;">Hospital</label>
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="hospital">Hospital</label>
                         <input type="text" class="form-control" name="hospital" placeholder="Enter hospital name" value="{{ old('hospital') }}">
-                        <span class="text-danger">@error('hospital'){{ $message }}@enderror</span>
+                        @error('hospital')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                     <div class="form-group">
-                         <label for="password"style="color: white; font-weight: bold;">Password</label>
-                         <input type="password" class="form-control" name="password" placeholder="Enter password" value="{{ old('password') }}">
-                         <span class="text-danger">@error('password'){{ $message }}@enderror</span>
-                     </div>
-                     <div class="form-group">
-                        <label for="cpassword"style="color: white; font-weight: bold;">Confirm Password</label>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter password" value="{{ old('password') }}">
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="cpassword">Confirm Password</label>
                         <input type="password" class="form-control" name="cpassword" placeholder="Enter confirm password" value="{{ old('cpassword') }}">
-                        <span class="text-danger">@error('cpassword'){{ $message }}@enderror</span>
+                        @error('cpassword')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                     <div class="form-group">
-                         <button type="submit" class="btn btn-primary">Register</button>
-                     </div>
-                     <br>
-                     <a href="{{ route('doctor.login') }}">I already have an account, Login now</a>
-                 </form>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </div>
+                    <br>
+                    <p>Already have an account? <a href="{{ route('doctor.login') }}">Login here</a>.</p>
+                </form>
             </div>
         </div>
     </div>
