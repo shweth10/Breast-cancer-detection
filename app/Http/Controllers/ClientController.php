@@ -67,54 +67,61 @@ class ClientController extends Controller
     }
 
     public function change(Request $request, $id)
-{
-    $client = Client::findOrFail($id);
-        $policy = Policy::where('id', $client->policy_id)->first(); // get the policy associated with the client
-        $policyRate = $policy->coverage_rate; // retrieve coverage rate from policies table
-        
-        $client->client_fname = $request->input('client_fname');
-        $client->Age = $request->input('Age');
-        $client->driving_license_number = $request->input('driving_license_number');
-        $client->client_email = $request->input('client_email');
-        $client->phone_number = $request->input('phone_number');
-        $client->vehicle_model = $request->input('vehicle_model');
-        $client->policy_id = $client->policy_id;
-        $client->policy_type = $client->policy_type; // retrieve policy_type from policies table
-        $client->policy_duration = $client->policy_duration; // retrieve duration from policies table
-        $client->coverage_amount = $request->input('coverage_amount');
-        $client->excess_amount = $request->input('excess_amount');
-        
-        $original_payment_period = $client->payment_period;
-        $requested_payment_period = $request->input('payment_period');
-        
-        // convert premium amount based on requested payment period
-        if ($original_payment_period == 'monthly' && $requested_payment_period == 'annually') {
-            $client->premium_amount *= 12;
-        } elseif ($original_payment_period == 'monthly' && $requested_payment_period == 'quarterly') {
-            $client->premium_amount *= 4;
-        } elseif ($original_payment_period == 'quarterly' && $requested_payment_period == 'monthly') {
-            $client->premium_amount /= 4;
-        } elseif ($original_payment_period == 'quarterly' && $requested_payment_period == 'annually') {
-            $client->premium_amount *= 3;
-        } elseif ($original_payment_period == 'annually' && $requested_payment_period == 'monthly') {
-            $client->premium_amount /= 12;
-        } elseif ($original_payment_period == 'annually' && $requested_payment_period == 'quarterly') {
-            $client->premium_amount /= 4;
-        }// update payment period
-$client->payment_period = $requested_payment_period;
+    {
+            $client = Client::findOrFail($id);
+            $policy = Policy::where('id', $client->policy_id)->first(); // get the policy associated with the client
+            $policyRate = $policy->coverage_rate; // retrieve coverage rate from policies table
+            
+            $client->client_fname = $request->input('client_fname');
+            $client->Age = $request->input('Age');
+            $client->driving_license_number = $request->input('driving_license_number');
+            $client->client_email = $request->input('client_email');
+            $client->phone_number = $request->input('phone_number');
+            $client->vehicle_model = $request->input('vehicle_model');
+            $client->policy_id = $client->policy_id;
+            $client->policy_type = $client->policy_type; // retrieve policy_type from policies table
+            $client->policy_duration = $client->policy_duration; // retrieve duration from policies table
+            $original_coverage_amount = $client->coverage_amount;
+            $client->coverage_amount = $request->input('coverage_amount');
+            $client->excess_amount = $request->input('excess_amount');
+            
+            $original_payment_period = $client->payment_period;
+            $requested_payment_period = $request->input('payment_period');
+    
+            // Recalculate premium if the coverage amount has changed
+            if ($client->coverage_amount != $original_coverage_amount) {
+                $client->premium_amount = ($client->coverage_amount * $policyRate/100) - ($client->excess_amount * $policyRate/100);
+                $client->premium_amount -= ($client->excess_amount * $policyRate/100) * ($client->vehicle_model/100);
+            }
+            $payment_period = $request->input('payment_period');
+            if ($payment_period == 'monthly') {
+                $client->premium_amount= $client->premium_amount / 12;
+            } elseif ($payment_period == 'quarterly') {
+                $client->premium_amount = $client->premium_amount / 4;
+            }
 
-// Calculate premium_amount using the formula
-$premium = ($client->coverage_amount * $policyRate/100) - ($client->excess_amount * $policyRate/100);
-$premium -= ($client->excess_amount * $policyRate/100) * ($client->vehicle_model/100);
-
-
-$client->vehicle_registration = $request->input('vehicle_registration');
-$client->policy_start_date = $request->input('policy_start_date');
-$client->payment_date = $request->input('policy_start_date');
-$client->Insurer_id = auth()->user()->id;
-$client->premium_due_date = $client->calculatePremiumDueDate();
-$client->policy_end_date = $client->calculatePolicyEndDate();
-$client->save();
+            // convert premium amount based on requested payment period
+            if ($original_payment_period == 'monthly' && $requested_payment_period == 'annually') {
+                $client->premium_amount *= 12;
+            } elseif ($original_payment_period == 'monthly' && $requested_payment_period == 'quarterly') {
+                $client->premium_amount *= 4;
+            } elseif ($original_payment_period == 'quarterly' && $requested_payment_period == 'monthly') {
+                $client->premium_amount /= 4;
+            } elseif ($original_payment_period == 'quarterly' && $requested_payment_period == 'annually') {
+                $client->premium_amount *= 3;
+            } elseif ($original_payment_period == 'annually' && $requested_payment_period == 'monthly') {
+                $client->premium_amount /= 12;
+            } elseif ($original_payment_period == 'annually' && $requested_payment_period == 'quarterly') {
+                $client->premium_amount /= 4;
+            }// update payment period
+            $client->payment_period = $requested_payment_period;
+    
+            $client->vehicle_registration = $request->input('vehicle_registration');
+            $client->policy_start_date = $request->input('policy_start_date');
+            $client->payment_date = $request->input('policy_start_date');
+            $client->premium_due_date = $client->calculatePremiumDueDate();
+            $client->policy_end_date;
+            $client->save();
 
     return redirect()->back();
 }

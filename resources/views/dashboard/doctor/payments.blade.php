@@ -1,5 +1,5 @@
 @extends('layouts.main-template')
-@section('title', isset($title) ? $title : 'Dashboard | Normal User')
+@section('title', isset($title) ? $title : 'Dashboard | Client')
 @section('content')
 
 <div class="relative max-w-7xl mx-auto">
@@ -22,12 +22,15 @@
     
 
 @foreach($clients as $client)
+@php
+    $policyType = $client->policy_type;
+    $coverageInformation = $policies->where('policy_type', $policyType)->pluck('coverage_information')->first();
+@endphp
 <div class="p-10">
     <div class="relative max-w-7xl mx-auto">
         <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
             <div class="flex-1 px-6 py-8 lg:p-12 bg-gray-600">
                 <h3 class="text-2xl font-extrabold text-white sm:text-3xl">{{ $client->policy_type }}</h3>
-                <p class="mt-6 text-base text-gray-50 sm:text-lg">${{ $client->premium_amount }}
                 </p>
                 <div class="mt-8">
                     <div class="flex items-center">
@@ -42,39 +45,8 @@
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                         clip-rule="evenodd"></path>
                                 </svg></div>
-                            <p class="ml-3 text-white">Inspect Tailwind CSS websites</p>
+                                <p class="ml-3 text-white">{{ $coverageInformation }}</p>
                         </li>
-                        <li class="flex items-start lg:col-span-1">
-                            <div class="flex-shrink-0"><svg class="h-5 w-5 text-green-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg></div>
-                            <p class="ml-3 text-white">Edit mode in real-time</p>
-                        </li>
-                        <li class="flex items-start lg:col-span-1">
-                            <div class="flex-shrink-0"><svg class="h-5 w-5 text-green-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg></div>
-                            <p class="ml-3 text-white">Copy utility classes right into your clipboard</p>
-                        </li>
-                        <li class="flex items-start lg:col-span-1">
-                            <div class="flex-shrink-0"><svg class="h-5 w-5 text-green-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg></div>
-                            <p class="ml-3 text-white">Free Chrome extension updates (Firefox coming soon)</p>
-                        </li>
-                    </ul>
                 </div>
             </div>
             <div class="py-8 px-6 text-center lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12 bg-gray-700">

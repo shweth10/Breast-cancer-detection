@@ -1,5 +1,5 @@
 @extends('layouts.main-template')
-@section('title', isset($title) ? $title : 'Dashboard | Normal User')
+@section('title', isset($title) ? $title : 'Dashboard | Client')
 @section('content')
 
 
@@ -15,8 +15,10 @@
     </div>
     @php
     $clients = App\Models\Client::where('client_email', auth()->user()->email)->get();
-    $policies=App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
+    $policies=App\Models\Policy::all();
+    $payments=App\Models\Payment::all();
     @endphp
+    
 
     <table class="table">
     <thead>

@@ -1,11 +1,19 @@
 @extends('layouts.main-template')
-@section('title', isset($title) ? $title : 'Dashboard | Normal User')
+@section('title', isset($title) ? $title : 'Dashboard | Insurer')
 @section('content')
 @php
     $clients= App\Models\Client::all();
     $policies=App\Models\Policy::all();
     $payments=App\Models\Payment::all();
 @endphp
+
+<div class="relative max-w-7xl mx-auto">
+        <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
+            <div class="flex-1 px-6 py-8 lg:p-12 bg-gray-600">
+                <h3 class="text-2xl font-extrabold text-white sm:text-3xl">Dashboard</h3>
+            </div>
+        </div>
+    </div>
 <div class="row">
     <div class="col-md-12 mt-3">
         <div class="flex flex-wrap">

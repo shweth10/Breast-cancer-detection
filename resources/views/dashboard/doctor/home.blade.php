@@ -1,5 +1,5 @@
 @extends('layouts.main-template')
-@section('title', isset($title) ? $title : 'Dashboard | Doctor')
+@section('title', isset($title) ? $title : 'Dashboard | Client')
 @section('content')
 
 @php

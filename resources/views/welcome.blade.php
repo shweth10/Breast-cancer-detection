@@ -114,10 +114,9 @@
                     Log in as:
                     <select onchange="window.location.href=this.value">
                         <option value="{{ route('user.home') }}"></option>
-                        <option value="{{ route('user.login') }}">Admin</option>
+                        <option value="{{ route('user.login') }}">Insurer</option>
                         <option value="{{ route('doctor.login') }}">Client</option>
-                        <option value="{{ route('user.login') }}">Claims Staff</option>
-                        <option value="{{ route('user.login') }}">Claims Manager</option>
+                        <option value="{{ route('admin.login') }}">Claims Staff</option>
                     </select>
                 </label>
 

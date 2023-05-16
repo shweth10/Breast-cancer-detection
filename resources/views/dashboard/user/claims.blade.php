@@ -96,15 +96,26 @@
   <span class="bg-red-500 px-2 py-0.5 font-semibold text-sm rounded-sm text-white">Rejected</span>
   @endif
 </td>
+<td>
+    <form action="{{ route('admin.claims.approve', $claim) }}" method="POST" style="display: inline">
+        @csrf
+        @method('PUT')
+        <button type="submit" class="btn btn-success">Approve</button>
+    </form>
+</td>
+<td>
+    <form action="{{ route('admin.claims.reject', $claim) }}" method="POST" style="display: inline">
+        @csrf
+        @method('PUT')
+        <button type="submit" class="btn btn-danger">Reject</button>
+    </form>
+</td>
             </tr>
         @endforeach
     </tbody>
 
 </table>
 
-    <div class="text-center">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addClaimModal">Apply Claim</button>
-    </div>
 
     </div>
 

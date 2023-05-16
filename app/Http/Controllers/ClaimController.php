@@ -9,11 +9,27 @@ use App\Models\Client;
 
 class ClaimController extends Controller
 {
+    public function approve(Claim $claim)
+{
+    $claim->approval_status = 'approved';
+    $claim->save();
+
+    return redirect()->route('user.claims')->with('success', 'Claim approved successfully.');
+}
+
+public function reject(Claim $claim)
+{
+    $claim->approval_status = 'rejected';
+    $claim->save();
+
+    return redirect()->route('user.claims')->with('success', 'Claim rejected successfully.');
+}
+
     public function index()
     {
         $claims = Claim::all();
 
-        return view('claims.index', compact('claims'));
+        return view('admin.claims', compact('claims'));
     }
 
     public function create()
