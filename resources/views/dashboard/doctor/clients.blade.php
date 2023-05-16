@@ -2,32 +2,30 @@
 @section('title', isset($title) ? $title : 'Dashboard | Normal User')
 @section('content')
 
+
+<div class="relative max-w-7xl mx-auto">
+        <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
+            <div class="flex-1 px-6 py-8 lg:p-12 bg-gray-600">
+                <h3 class="text-2xl font-extrabold text-white sm:text-3xl">Upgrade Policy</h3>
+            </div>
+        </div>
+    </div>
 <div class="row">
     <div class="col-md-12 mt-3">
     </div>
     @php
-    $clients= App\Models\Client::all();
-    $policies=App\Models\Policy::all();
+    $clients = App\Models\Client::where('client_email', auth()->user()->email)->get();
+    $policies=App\Models\Policy::where('insurer_id', auth()->user()->id)->get();
     @endphp
-    
-    <h3>Client Details</h3>
+
     <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>Age</th>
-            <th>Driving License #</th>
-            <th>Vehicle#</th>
-            <th>Vehicle Model</th>
             <th>Policy Taken</th>            
             <th>Coverage Amount</th>
             <th>Excess Amount</th>
             <th>Premium Amount</th>
-            <th>Total Paid</th>
             <th>Payment Period</th>
-            <th></th>
             <th>Actions</th>
 
         </tr>
@@ -35,67 +33,19 @@
     <tbody>
         @foreach($clients as $client)
         <tr>
-            <td>{{ $client->client_fname }}</td>
-            <td>{{ $client->client_email }}</td>
-            <td>{{ $client->phone_number }}</td>
-            <td>{{ $client->Age }}</td>
-            <td>{{ $client->driving_license_number }}</td>
-            <td>{{ $client->vehicle_registration }}</td>
-            <td>
-            @switch($client->vehicle_model)
-                @case(99)
-                Toyota
-                @break
-                @case(90)
-                Honda
-                @break
-                @case(85)
-                Ford
-                @break
-                @case(80)
-                Nissan
-                @break
-                @case(75)
-                Chevrolet
-                @break
-                @case(72)
-                Hyundai
-                @break
-                @case(70)
-                Kia
-                @break
-                @default
-                Unknown
-            @endswitch
-            </td> 
             <td>{{ $client->policy_type }}</td>
             <td>${{ number_format($client->coverage_amount, 2, '.', ',') }}</td>
             <td>${{ number_format($client->excess_amount, 2, '.', ',') }}</td>
             <td>${{ number_format($client->premium_amount, 2, '.', ',') }}</td>
-            <td>${{ number_format($client->account_wallet, 2, '.', ',') }}</td>
             <td>{{ $client->payment_period }}</td>
 
             <td>
                 <a data-toggle="modal" data-target="#editClientModal{{ $client->id}}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
             </td>
-            <td>
-                <form action="{{ route('client.destroy', $client->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger"><i class="nav-icon fas fa-trash"></i></button>
-                </form>
-            </td>
-            <td><a href="{{ route('client.report', $client->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a></td>
         </tr>
         @endforeach
     </tbody>
 </table>
-
-<div class="text-center">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">Add New Client</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Edit Policy Modal -->
     @if(isset($client))
@@ -113,35 +63,39 @@
             @method('PUT')
             <div class="modal-body">
 
-            <div class="form-group">
-                        <label for="client_fname">Client Name</label>
-                        <input type="text" name="client_fname" class="form-control" id="1client_fname" value=" {{ $client->client_fname }} " required>
+            <div class="form-group" style="display: none;">
+                <label for="client_id">Client ID</label>
+                <input type="text" name="client_id" class="form-control" id="1client_id" value="{{ $client->id }}" readonly>
             </div>
 
-            <div class="form-group">
-                        <label for="Age">Age</label> (Note, if age is under 25 then extra $250 is added to excess)
-                        <input type="number" name="Age" class="form-control" id="1Age" value="{{ intval($client->Age) }}" required autocomplete="off">
-
+            <div class="form-group"style="display: none;">
+                <label for="client_fname">Client Name</label>
+                <input type="text" name="client_fname" class="form-control" id="1client_fname" value=" {{ $client->client_fname }} " required>
             </div>
 
-            <div class="form-group">
-                        <label for="driving_license_number">Driving License #</label>
-                        <input type="number" name="driving_license_number" class="form-control" id="1driving_license_number" value="{{ $client->driving_license_number }}" required>
-
+            <div class="form-group" style="display: none;">
+                <label for="Age">Age</label> (Note, if age is under 25 then extra $250 is added to excess)
+                <input type="number" name="Age" class="form-control" id="1Age" value="{{ intval($client->Age) }}" required autocomplete="off">
             </div>
 
-            <div class="form-group">
-                            <label for="client_email">Email</label>
-                            <input type="email" name="client_email" class="form-control" id="1client_email" value="{{ $client->client_email }}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                            <div class="invalid-feedback">Please enter a valid email address</div>
+            <div class="form-group"style="display: none;">
+                <label for="driving_license_number">Driving License #</label>
+                <input type="number" name="driving_license_number" class="form-control" id="1driving_license_number" value="{{ $client->driving_license_number }}" required>
             </div>
 
-            <div class="form-group">
-                        <label for="phone_number">Phone Number</label>
-                        <input type="number" name="phone_number" class="form-control" id="1phone_number" value="{{ $client->phone_number }}" required>
+            <div class="form-group" style="display: none;">
+                <label for="client_email">Email</label>
+                <input type="email" name="client_email" class="form-control" id="1client_email" value="{{ $client->client_email }}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <div class="invalid-feedback">Please enter a valid email address</div>
             </div>
 
-            <div>
+            <div class="form-group" style="display: none;">
+                <label for="phone_number">Phone Number</label>
+                <input type="number" name="phone_number" class="form-control" id="1phone_number" value="{{ $client->phone_number }}" required>
+            </div>
+
+
+            <div class = "form-group"style="display: none;">
             <label for="vehicle_model">Vehicle Make</label>
                         <select name="vehicle_model" class="form-control" id="1vehicle_model"  required>
                                 <option value="{{ $client->vehicle_model }}">
@@ -182,7 +136,7 @@
                             </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group"style="display: none;">
                         <label for="vehicle_registration">Vehicle Registration</label>
                         <input type="text" name="vehicle_registration" class="form-control" id="1vehicle_registration" value="{{ $client->vehicle_registration }}" required>
             </div>
@@ -230,7 +184,7 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group"style="display: none;">
                         <label for="policy_start_date">Policy Start Date</label>
                         <input type="text" name="policy_start_date" class="form-control" id="1policy_start_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" value="{{ $client->policy_start_date }}" title="Please enter a date in the format YYYY-MM-DD">
                         <div class="invalid-feedback">Please enter a valid date in the format YYYY-MM-DD</div>

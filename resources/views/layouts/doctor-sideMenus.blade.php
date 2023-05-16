@@ -10,7 +10,15 @@
     <a href="{{ route('doctor.payments') }}" class="nav-link">
       <i class="nav-icon fas fa-user-plus"></i>
       <p>
-        Manage Premiums
+        Pay Premiums
+      </p>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ route('doctor.clients') }}" class="nav-link">
+      <i class="nav-icon fas fa-user-plus"></i>
+      <p>
+        Upgrade Policy
       </p>
     </a>
   </li>

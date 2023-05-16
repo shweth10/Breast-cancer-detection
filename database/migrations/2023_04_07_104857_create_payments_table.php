@@ -20,7 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->string('exp_date');
             $table->string('client_email');
             $table->integer('premium_amount');
-            $table->integer('card_number');
+            $table->bigInteger('card_number');
             $table->integer('cvv');
             $table->string('payment_period');
             $table->string('policy_type');

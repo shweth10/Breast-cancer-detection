@@ -41,6 +41,7 @@ Route::delete('/clients/{id}', [App\Http\Controllers\ClientController::class, 'd
 Route::put('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'update'])->name('policy.update');
 Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
 
+
 Route::get('/clients/{id}/report', [App\Http\Controllers\ClientController::class, 'generateReport'])->name('client.report');
 Route::get('/policy/{id}/report', [App\Http\Controllers\PolicyController::class, 'generateReport'])->name('policy.report');
 Route::get('/payments/report', [App\Http\Controllers\PaymentController::class, 'generatePaymentsReport'])->name('payments.report');

@@ -29,6 +29,7 @@ class CreateClientsTable extends Migration
             $table->integer('policy_duration')->nullable();
             $table->integer('premium_amount')->nullable();
             $table->integer('coverage_amount')->nullable();
+            $table->integer('account_wallet')->nullable();
             $table->integer('excess_amount')->nullable();
             $table->string('payment_period')->nullable();
             $table->date('policy_start_date');

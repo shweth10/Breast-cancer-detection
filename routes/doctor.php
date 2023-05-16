@@ -20,6 +20,7 @@ Route::prefix('doctor')->name('doctor.')->group(function(){
     Route::middleware(['auth:doctor','is_doctor_verify_email','PreventBackHistory'])->group(function(){
          Route::view('/','dashboard.doctor.home')->name('home');
          Route::view('/home','dashboard.doctor.home')->name('home');
+         Route::view('/clients','dashboard.doctor.clients')->name('clients');
          Route::view('/payments','dashboard.doctor.payments')->name('payments');
          Route::post('logout',[DoctorController::class,'logout'])->name('logout');
     });
@@ -30,3 +31,5 @@ Route::prefix('doctor')->name('doctor.')->group(function(){
 Route::post('/payment', [App\Http\Controllers\PaymentController::class, 'store'])->name('payment.store');
 Route::get('/payments/report', [App\Http\Controllers\PaymentController::class, 'generatePaymentsReport'])->name('payments.report');
 Route::get('/payments/{id}/report', [App\Http\Controllers\ClientController::class, 'generatePReport'])->name('premium.report');
+
+Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'change'])->name('client.change');

@@ -37,6 +37,7 @@ class PaymentController extends Controller
         $payment->save();
         
         $client->premium_due_date = $payment->next_payment_date;
+        $client->account_wallet = $request->input('account_wallet');
         $client->payment_date = $payment->payment_date;
         $client->save();
 

@@ -239,7 +239,6 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
     </div>
     <!-- Default to the left -->
   </footer>
@@ -646,6 +645,14 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
           x[n].className += " active";
         }
   </script>
+  <script>
+    function updateFileName() {
+        const fileInput = document.getElementById('proof');
+        const fileLabel = document.getElementById('file-label');
+        const fileName = fileInput.files[0].name;
+        fileLabel.textContent = fileName;
+    }
+</script>
     
 </body>
 </html>

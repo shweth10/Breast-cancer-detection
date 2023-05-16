@@ -2,6 +2,15 @@
 @section('title', isset($title) ? $title : 'Dashboard | Normal User')
 @section('content')
 
+<div class="relative max-w-7xl mx-auto">
+    <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
+        <div class="flex-1 px-6 py-8 lg:p-12 bg-gray-600">
+            <h3 class="text-2xl font-extrabold text-white sm:text-3xl">Premium Details</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-12 mt-3">
     </div>
@@ -11,62 +20,117 @@
     $payments=App\Models\Payment::all();
     @endphp
     
-    <h3>Premium Details</h3>
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Policy Type</th>
-            <th>Payment Amount</th>
-            <th>Period</th>
-            <th>Last Payment Made</th>
-            <th>Next Payment Due</th>
-            <th>Status</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($clients as $client)
-            <tr>
-                <td>{{ $client->client_fname }}</td>
-                <td>{{ $client->policy_type }}</td>
-                <td>${{ number_format($client->premium_amount, 2, '.', ',') }}</td>
-                <td>{{ $client->payment_period }}</td>
-                <td>{{ $client->payment_date }}</td>
-                <td>{{ $client->premium_due_date }}</td>
-                <td>
-                    @php
-                        $status = '';
-                        $class = '';
+@foreach($clients as $client)
+<div class="p-10">
+    <div class="relative max-w-7xl mx-auto">
+        <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
+            <div class="flex-1 px-6 py-8 lg:p-12 bg-gray-600">
+                <h3 class="text-2xl font-extrabold text-white sm:text-3xl">{{ $client->policy_type }}</h3>
+                <p class="mt-6 text-base text-gray-50 sm:text-lg">${{ $client->premium_amount }}
+                </p>
+                <div class="mt-8">
+                    <div class="flex items-center">
+                        <div class="flex-1 border-t-2 border-gray-200"></div>
+                    </div>
+                    <ul role="list" class="mt-8 space-y-5 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
+                        <li class="flex items-start lg:col-span-1">
+                            <div class="flex-shrink-0"><svg class="h-5 w-5 text-green-400"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg></div>
+                            <p class="ml-3 text-white">Inspect Tailwind CSS websites</p>
+                        </li>
+                        <li class="flex items-start lg:col-span-1">
+                            <div class="flex-shrink-0"><svg class="h-5 w-5 text-green-400"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg></div>
+                            <p class="ml-3 text-white">Edit mode in real-time</p>
+                        </li>
+                        <li class="flex items-start lg:col-span-1">
+                            <div class="flex-shrink-0"><svg class="h-5 w-5 text-green-400"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg></div>
+                            <p class="ml-3 text-white">Copy utility classes right into your clipboard</p>
+                        </li>
+                        <li class="flex items-start lg:col-span-1">
+                            <div class="flex-shrink-0"><svg class="h-5 w-5 text-green-400"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg></div>
+                            <p class="ml-3 text-white">Free Chrome extension updates (Firefox coming soon)</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="py-8 px-6 text-center lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12 bg-gray-700">
+    @php
+        $status = '';
+        $class = '';
+        $buttonText = '';
+        $buttonClass = '';
 
-                        $current_date = date('Y-m-d');
-                        $due_date = date('Y-m-d', strtotime($client->premium_due_date . ' - 20 days'));
+        $current_date = date('Y-m-d');
+        $due_date = date('Y-m-d', strtotime($client->premium_due_date . ' - 20 days'));
 
-                        if ($current_date > $client->premium_due_date) {
-                            $status = 'Expired';
-                            $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
-                        } elseif ($current_date >= $due_date && $current_date <= $client->premium_due_date) {
-                            $status = 'Due';
-                            $class = 'm-2 inline-block rounded bg-warning py-1 px-2 text-sm font-semibold text-black';
-                        } else {
-                            $status = 'Active';
-                            $class = 'm-2 inline-block rounded bg-success py-1 px-2 text-sm font-semibold text-white';
-                        }
-                    @endphp
-                    <span class="{{ $class }}">{{ $status }}</span>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
+        if ($current_date > $client->premium_due_date) {
+            $status = 'Expired';
+            $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
+            $buttonText = 'Request Renewal';
+            $buttonClass = 'opacity-50 cursor-not-allowed';
+        } elseif ($current_date >= $due_date && $current_date <= $client->premium_due_date) {
+            $status = 'Due';
+            $class = 'm-2 inline-block rounded bg-warning py-1 px-2 text-sm font-semibold text-black';
+            $buttonText = 'Pay Now';
+            $buttonClass = '';
+        } else {
+            $status = 'Active';
+            $class = 'm-2 inline-block rounded bg-success py-1 px-2 text-sm font-semibold text-white';
+            $buttonText = 'Paid';
+            $buttonClass = 'opacity-50 cursor-not-allowed';
+        }
+    @endphp
 
-</table>
+    <span class="{{ $class }}">{{ $status }}</span>
 
-<div class="text-center">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addFundsModal">Make Payment</button>
+    <div class="mt-4 flex items-center justify-center text-5xl font-extrabold text-white">
+        <span>${{ $client->premium_amount }}</span><span class="ml-3 text-xl font-medium text-gray-50">FJD</span>
+    </div>
 
+    <div class="mt-6">
+        <div class="rounded-md shadow">
+            <a @if ($status = 'Due') data-toggle="modal" data-target="#addFundsModal" @endif
+                class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 {{ $buttonClass }}">
+                {{ $buttonText }}
+            </a>
+        </div>
+    </div>
+
+                    <p class="text-gray-300 text-sm mt-3">{{ $client->payment_period }}</p>
+                </div>
             </div>
         </div>
     </div>
+</div>
+@endforeach
+
+    </div>
+
+
     <div class="modal fade" id="addFundsModal" tabindex="-1" role="dialog" aria-labelledby="addFundsModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -78,21 +142,25 @@
     <div class="px-6 py-4">
 
     @csrf
+    <div class="form-group">
+    <label for="client_fname">Select Client</label>
+    <select class="form-control" id="id" name="id" required>
+        @if ($policies->isEmpty())
+            <option value="">Policy not found, Add policy type first!</option>
+        @else
+            @foreach($clients as $client)
+                @if ($client->client_email === auth()->user()->email)
+                    <option value="{{ $client->id }}" selected>{{ $client->client_fname }} - {{ $client->policy_type }}</option>
+                @else
+                    <option value="{{ $client->id }}">{{ $client->client_fname }} - {{ $client->policy_type }}</option>
+                @endif
+            @endforeach
+        @endif
+    </select>
+</div>
+
                         <div class="form-group">
-                            <label for="client_fname">Select Client</label>
-                            <select class="form-control" id="id" name="id" required>
-                                @if ($policies->isEmpty())
-                                <option value="">Policy not found, Add policy type first!</option>
-                                @else
-                                <option value="">Client List</option>
-                                @foreach($clients as $client)
-                                    <option value="{{ $client->id }}">{{ $client->client_fname }}</option>
-                                @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                        <label for="payment_date">Payment Date</label>
+                        <label for="payment_date">Current Date</label>
                         <input type="text" name="payment_date" class="form-control" id="payment_date" placeholder="YYYY-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD">
                         <div class="invalid-feedback">Please enter a valid date in the format YYYY-MM-DD</div>
                         </div>
@@ -103,7 +171,7 @@
             </label>
             <input
                 class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="card_number" type="text" name="card_number"placeholder="**** **** **** ****">
+                id="card_number" type="number" name="card_number"placeholder="**** **** **** ****">
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2" for="card_fname">
@@ -130,6 +198,14 @@
             <input
                 class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="cvv" type="text" name="cvv"placeholder="***">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="account_wallet">
+                Amount$
+            </label>
+            <input
+                class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="account_wallet" type="number" name="account_wallet"placeholder="Enter amount $">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
