@@ -80,22 +80,58 @@ class DoctorController extends Controller
     }
 
     function check(Request $request){
-        //Validate Inputs
+        //Validate inputs
         $request->validate([
            'email'=>'required|email|exists:doctors,email',
            'password'=>'required|min:5|max:30'
         ],[
-            'email.exists'=>'This email does not exist in clients table'
+            'email.exists'=>'This email does not exist on doctors table'
         ]);
-
+    
         $creds = $request->only('email','password');
-
+        $doctor = Doctor::where('email', $creds['email'])->first();
+    
+        if (!$doctor) {
+            return redirect()->route('doctor.login')->with('fail','Incorrect credentials');
+        }
+    
+        if ($doctor->email_verified === 0) {
+            $token = $doctor->id.hash('sha256', \Str::random(120));
+            $verifyURL = route('doctor.verify',['token'=>$token,'service'=>'Email_verification']);
+    
+            VerifyDoctor::create([
+                'doctor_id'=>$doctor->id,
+                'token'=>$token,
+            ]);
+    
+            $message = 'Dear <b>'.$doctor->name.'</b>';
+            $message.= ' Thanks for signing up, we just need you to verify your email address to complete setting up your account.';
+    
+            $mail_data = [
+                'recipient'=>$doctor->email,
+                'fromEmail'=>'noreply@example.com',
+                'fromName'=>'Your App Name',
+                'subject'=>'Email Verification',
+                'body'=>$message,
+                'actionLink'=>$verifyURL,
+            ];
+    
+            \Mail::send('email-template', $mail_data, function($message) use ($mail_data){
+                $message->to($mail_data['recipient'])
+                        ->from($mail_data['fromEmail'], $mail_data['fromName'])
+                        ->subject($mail_data['subject']);
+            });
+    
+            return redirect()->route('doctor.login')->with('fail', 'Please check your Email to verify your account, Thank you!.');
+        }
+    
         if( Auth::guard('doctor')->attempt($creds) ){
             return redirect()->route('doctor.home');
         }else{
-            return redirect()->route('doctor.login')->with('fail','Incorrect Credentials');
+            return redirect()->route('doctor.login')->with('fail','Incorrect credentials');
         }
     }
+
     function logout(){
         $verifyDoctor = Auth::guard('doctor')->user();
         if (!is_null($verifyDoctor)) {

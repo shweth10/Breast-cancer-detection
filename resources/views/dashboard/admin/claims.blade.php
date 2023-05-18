@@ -131,7 +131,7 @@
                                 @else
                                 <option value="">Client List</option>
                                 @foreach($clients as $client)
-                                    <option value="{{ $client->id }}">{{ $client->client_fname }}</option>
+                                    <option value="{{ $client->id }}">{{ $client->client_fname }}- {{ $client->policy_type }}</option>
                                 @endforeach
                                 @endif
                             </select>

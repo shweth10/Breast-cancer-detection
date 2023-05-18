@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Claim;
 use App\Models\Client;
+use Illuminate\Support\Facades\Mail;
 
 
 class ClaimController extends Controller
