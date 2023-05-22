@@ -51,7 +51,7 @@ class PaymentController extends Controller
     $pdfOptions->set('defaultFont', 'Arial');
 
     $dompdf = new Dompdf($pdfOptions);
-    $html = view('dashboard.user.payments-report', compact('payments'))->render();
+    $html = view('dashboard.doctor.payments-report', compact('payments'))->render();
     $dompdf->loadHtml($html);
 
     $dompdf->setPaper('A4', 'landscape');

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Claim;
 use App\Models\Client;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewClaimNotification;
 
 
 class ClaimController extends Controller
@@ -53,11 +54,11 @@ public function reject(Claim $claim)
 
     // Create a new claim instance
     $claim = new Claim();
-    $claim->client_id = $validatedData['client_id']; // Use the validated data instead of input directly from request
+    $claim->client_id = $validatedData['client_id'];
     $claim->claim_amount = $request->input('claim_amount');
-    $claim->incident_date = $validatedData['incident_date']; // Use the validated data instead of input directly from request
+    $claim->incident_date = $validatedData['incident_date'];
     $claim->policy_type = $client->policy_type;
-    $claim->incident_details = $validatedData['incident_details']; // Use the validated data instead of input directly from request
+    $claim->incident_details = $validatedData['incident_details'];
     if ($request->hasFile('proof')) {
         $proof = $request->file('proof');
         $proofPath = $proof->store('proofs');
@@ -69,11 +70,21 @@ public function reject(Claim $claim)
     // Save the claim
     $claim->save();
 
+    // Send email notification
+    $emailData = [
+        'claim' => $claim,
+    ];
+
+    Mail::to('shweth34@gmail.com')->send(new NewClaimNotification($emailData));
+    Mail::to($client->client_email)->send(new NewClaimNotification($emailData));
+
     // Redirect or perform any other actions after saving the claim
 
     // Example: Redirect to a success page
     return redirect()->route('admin.claims');
 }
+
+
 public function downloadProof(Claim $claim)
 {
     $filePath = storage_path('app/' . $claim->proof);
