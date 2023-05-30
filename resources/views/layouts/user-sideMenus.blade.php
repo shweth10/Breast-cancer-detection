@@ -1,6 +1,6 @@
   <li class="nav-item">
     <a href="{{ route('user.home') }}" class="nav-link">
-      <i class="nav-icon fas fa-clock"></i>
+      <i class="nav-icon fas fa-chart-line"></i>
       <p>
         Dashboard
       </p>
@@ -26,15 +26,15 @@
   </li>
   <li class="nav-item">
     <a href="{{ route('user.payments') }}" class="nav-link">
-      <i class="nav-icon fas fa-user-plus"></i>
+      <i class="nav-icon fas fa-money-check-alt"></i>
       <p>
-        Manage Premiums
+        Policy Payments
       </p>
     </a>
   </li>
   <li class="nav-item">
     <a href="{{ route('user.claims') }}" class="nav-link">
-      <i class="nav-icon fas fa-user-plus"></i>
+      <i class="nav-icon fas fa-tasks"></i>
       <p>
         Manage Claims
       </p>

@@ -66,7 +66,7 @@
         if ($current_date > $client->premium_due_date) {
             $status = 'Expired';
             $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
-            $buttonText = 'Request Renewal';
+            $buttonText = 'Expired';
             $buttonClass = 'opacity-50 cursor-not-allowed';
         } elseif ($current_date >= $due_date && $current_date <= $client->premium_due_date) {
             $status = 'Due';
@@ -89,11 +89,26 @@
 
     <div class="mt-6">
         <div class="rounded-md shadow">
-            <a @if ($status = 'Due') data-toggle="modal" data-target="#addFundsModal" @endif
-                class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 {{ $buttonClass }}">
-                {{ $buttonText }}
-            </a>
+        <a @if ($status === 'Due') data-toggle="modal" data-target="#addFundsModal" @endif
+        class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 {{ $buttonClass }}">
+        {{ $buttonText }}
+        </a>
+
         </div>
+        <div>
+        @if ($client->client_email === auth()->user()->email && $status !== 'Expired')
+    <form action="{{ route('cancel-renewal') }}" method="POST">
+        @csrf
+        <input type="hidden" name="client_id" value="{{ $client->id }}">
+        <button type="submit" class="btn btn-danger">Request Renewal Cancellation</button>
+    </form>
+@elseif ($status === 'Expired')
+    <p class="text-white">Renewal cancellation is not available for expired policies.</p>
+@endif
+
+
+</div>
+
     </div>
 
                     <p class="text-gray-300 text-sm mt-3">{{ $client->payment_period }}</p>

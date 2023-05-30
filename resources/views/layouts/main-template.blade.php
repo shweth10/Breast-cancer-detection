@@ -653,6 +653,12 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
         fileLabel.textContent = fileName;
     }
 </script>
+<script>
+    @if (session('successful'))
+        // Show success popup
+        alert('Notification email sent successfully.');
+    @endif
+</script>
     
 </body>
 </html>

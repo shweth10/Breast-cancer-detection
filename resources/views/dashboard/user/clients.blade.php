@@ -25,7 +25,7 @@
             <th>Email</th>
             <th>Contact</th>
             <th>Age</th>
-            <th>Driving License #</th>
+            <th>Policy End</th>
             <th>Vehicle#</th>
             <th>Vehicle Model</th>
             <th>Policy Taken</th>            
@@ -46,7 +46,7 @@
             <td>{{ $client->client_email }}</td>
             <td>{{ $client->phone_number }}</td>
             <td>{{ $client->Age }}</td>
-            <td>{{ $client->driving_license_number }}</td>
+            <td>{{ $client->policy_end_date }}</td>
             <td>{{ $client->vehicle_registration }}</td>
             <td>
             @switch($client->vehicle_model)

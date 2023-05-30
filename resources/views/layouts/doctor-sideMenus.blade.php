@@ -1,6 +1,6 @@
 <li class="nav-item">
     <a href="{{ route('doctor.home') }}" class="nav-link">
-      <i class="nav-icon fas fa-clock"></i>
+      <i class="nav-icon fas fa-chart-line"></i>
       <p>
         Dashboard
       </p>
@@ -8,7 +8,7 @@
   </li>
   <li class="nav-item">
     <a href="{{ route('doctor.payments') }}" class="nav-link">
-      <i class="nav-icon fas fa-user-plus"></i>
+      <i class="nav-icon fas fa-money-bill-wave"></i>
       <p>
         Pay Premiums
       </p>
@@ -16,7 +16,7 @@
   </li>
   <li class="nav-item">
     <a href="{{ route('doctor.clients') }}" class="nav-link">
-      <i class="nav-icon fas fa-user-plus"></i>
+      <i class="nav-icon fas fa-arrow-up"></i>
       <p>
         Upgrade Policy
       </p>

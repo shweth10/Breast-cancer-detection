@@ -31,5 +31,7 @@ Route::prefix('doctor')->name('doctor.')->group(function(){
 Route::post('/payment', [App\Http\Controllers\PaymentController::class, 'store'])->name('payment.store');
 Route::get('/payments/report', [App\Http\Controllers\PaymentController::class, 'generatePaymentsReport'])->name('payments.report');
 Route::get('/payments/{id}/report', [App\Http\Controllers\ClientController::class, 'generatePReport'])->name('premium.report');
+Route::post('/cancel-renewal', 'App\Http\Controllers\ClientController@cancelRenewal')->name('cancel-renewal');
+
 
 Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'change'])->name('client.change');

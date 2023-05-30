@@ -28,7 +28,10 @@
             <th>Period</th>
             <th>Last Payment Made</th>
             <th>Next Payment Due</th>
+            <th>Policy End</th>
             <th>Status</th>
+            <th></th>
+            <th>Actions</th>
 
         </tr>
     </thead>
@@ -41,6 +44,7 @@
                 <td>{{ $client->payment_period }}</td>
                 <td>{{ $client->payment_date }}</td>
                 <td>{{ $client->premium_due_date }}</td>
+                <td>{{ $client->policy_end_date }}</td>
                 <td>
                     @php
                         $status = '';
@@ -48,8 +52,12 @@
 
                         $current_date = date('Y-m-d');
                         $due_date = date('Y-m-d', strtotime($client->premium_due_date . ' - 20 days'));
+                        $policy_end_date = date('Y-m-d', strtotime($client->policy_end_date));
 
-                        if ($current_date > $client->premium_due_date) {
+                        if ($current_date > $policy_end_date) {
+                            $status = 'Expired';
+                            $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
+                        } elseif ($current_date > $client->premium_due_date) {
                             $status = 'Expired';
                             $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
                         } elseif ($current_date >= $due_date && $current_date <= $client->premium_due_date) {
@@ -60,10 +68,24 @@
                             $class = 'm-2 inline-block rounded bg-success py-1 px-2 text-sm font-semibold text-white';
                         }
                     @endphp
+
                     <span class="{{ $class }}">{{ $status }}</span>
                 </td>
-                <td>
-                </td>
+                @if ($status == 'Expired' || $current_date > $policy_end_date)
+                    <td>
+                        <form action="{{ route('renew.policy', $client->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary btn-sm">Renew</button>
+                        </form>
+                        <form action="{{ route('notify.client', $client->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary btn-sm">Notify User</button>
+                        </form>
+                    </td>
+                @else
+                    <td></td>
+                @endif
+
                 <td>
                     <a href="{{ route('premium.report', $client->id) }}" class="btn btn-success btn-sm"><i class="nav-icon fas fa-download"></i></a>
                 </td>

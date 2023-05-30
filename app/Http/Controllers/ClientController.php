@@ -13,8 +13,55 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PolicyExpiredNotification;
+use App\Mail\CancelRenewalNotification;
+
 class ClientController extends Controller
 {
+    public function cancelRenewal(Request $request)
+{
+    $clientId = $request->client_id;
+    $client = Client::find($clientId);
+
+    if (!$client) {
+        // Handle the case when the client is not found
+        return redirect()->back()->with('error', 'Client not found.');
+    }
+
+    Mail::to('shweth34@gmail.com')->send(new CancelRenewalNotification($client));
+
+    // Perform any additional actions, such as updating the client's renewal status
+
+    return redirect()->back()->with('success', 'Renewal cancellation request sent.');
+}
+public function notify(Client $client)
+{
+    $emailData = [
+        'client' => $client,
+    ];
+
+    Mail::to($client->client_email)->send(new PolicyExpiredNotification($emailData));
+
+    return redirect()->back()->with('successful', 'Notification email sent.');
+}
+    public function renewPolicy($id)
+{
+    $client = Client::findOrFail($id);
+
+    // Add one more year to the policy_end_date
+    $policyEndDate = Carbon::parse($client->policy_end_date);
+    $client->policy_end_date = $policyEndDate->addYear();
+
+    // Set premium_due_date to current date
+    $client->premium_due_date = Carbon::now()->format('Y-m-d');
+
+    $client->save();
+
+    return redirect()->back()->with('success', 'Policy has been renewed.');
+}
+
+
 
     public function add()
     {

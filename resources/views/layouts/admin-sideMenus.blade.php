@@ -1,6 +1,6 @@
 <li class="nav-item">
     <a href="{{ route('admin.home') }}" class="nav-link">
-      <i class="nav-icon fas fa-clock"></i>
+      <i class="nav-icon fas fa-chart-line"></i>
       <p>
         Dashboard
       </p>
@@ -8,7 +8,7 @@
   </li>
   <li class="nav-item">
     <a href="{{ route('admin.claims') }}" class="nav-link">
-      <i class="nav-icon fas fa-user-plus"></i>
+      <i class="nav-icon fas fa-check-circle"></i>
       <p>
         Issue Claim
       </p>

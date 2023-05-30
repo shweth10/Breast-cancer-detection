@@ -36,12 +36,17 @@ Route::prefix('user')->name('user.')->group(function(){
 Route::post('/policy', [App\Http\Controllers\PolicyController::class, 'store'])->name('policy.store');
 Route::post('/client', [App\Http\Controllers\ClientController::class, 'store'])->name('client.store');
 
+Route::post('/notify-client/{client}', [App\Http\Controllers\ClientController::class, 'notify'])->name('notify.client');
+
+
+
 
 Route::delete('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'destroy'])->name('policy.destroy');
 Route::delete('/clients/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client.destroy');
 Route::put('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'update'])->name('policy.update');
 Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
 
+Route::post('/clients/{id}/renew', [App\Http\Controllers\ClientController::class, 'renewPolicy'])->name('renew.policy');
 
 Route::get('/clients/{id}/report', [App\Http\Controllers\ClientController::class, 'generateReport'])->name('client.report');
 Route::get('/policy/{id}/report', [App\Http\Controllers\PolicyController::class, 'generateReport'])->name('policy.report');
