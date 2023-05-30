@@ -45,6 +45,8 @@ Route::delete('/policies/{id}', [App\Http\Controllers\PolicyController::class, '
 Route::delete('/clients/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client.destroy');
 Route::put('/policies/{id}', [App\Http\Controllers\PolicyController::class, 'update'])->name('policy.update');
 Route::put('/clients/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
+// Add route for canceling renewal
+Route::post('/clients/{id}/cancel-renewal', [App\Http\Controllers\ClientController::class, 'cancelRenewalRequest'])->name('cancel.renewal');
 
 Route::post('/clients/{id}/renew', [App\Http\Controllers\ClientController::class, 'renewPolicy'])->name('renew.policy');
 

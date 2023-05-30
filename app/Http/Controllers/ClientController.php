@@ -21,6 +21,16 @@ use App\Models\Claim;
 
 class ClientController extends Controller
 {
+    public function cancelRenewalRequest($id)
+{
+    $client = Client::find($id);
+
+    // Set policy_end_date to the last day of the current year
+    $client->policy_end_date = Carbon::now()->endOfYear();
+    $client->save();
+
+    return redirect()->back()->with('success', 'Renewal canceled successfully.');
+}
     public function cancelRenewal(Request $request)
 {
     $clientId = $request->client_id;

@@ -83,7 +83,10 @@
                         </form>
                     </td>
                 @else
-                    <td></td>
+                    <td><form action="{{ route('cancel.renewal', $client->id) }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm">Cancel Renewal</button>
+        </form></td>
                 @endif
 
                 <td>

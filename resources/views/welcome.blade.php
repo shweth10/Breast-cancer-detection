@@ -214,7 +214,7 @@
                                 <div class="row justify-center">
                                 @foreach($policies as $policy)
                                     <div class="w-full sm:w-9/12 md:w-7/12 lg:w-4/12">
-                                        <div class="single_pricing text-center mt-8 mx-3">
+                                        <div class="single_pricing text-center mt-8 mx-3 active">
                                             <div class="pricing_title relative inline-block">
                                                 <h4 class="title group-hover:text-white">{{ $policy->policy_type }}</h4>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="112" height="110" viewBox="0 0 112 110">
@@ -222,6 +222,7 @@
                                                 </svg>
                                             </div>
                                             <div class="pricing_content mt-6">
+                                                <span class="pricing_price font-bold text-black text-4xl">${{ $policy->max_coverage_amount }} max</span>
                                                 <p class="mt-4 leading-9">{{ $policy->coverage_information }} </p>
                                                 <a href="{{ route('policy.report', $policy->id) }}" class="main-btn pricing_btn">More Information</a>
                                             </div>
