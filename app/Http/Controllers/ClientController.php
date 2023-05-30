@@ -29,6 +29,14 @@ class ClientController extends Controller
     $client->policy_end_date = Carbon::now()->endOfYear();
     $client->save();
 
+    $emailData = [
+        'client' => $client,
+    ];
+
+    Mail::to($client->client_email)->send(new PolicyExpiredNotification($emailData));
+
+    return redirect()->back()->with('successful', 'Notification email sent.');
+
     return redirect()->back()->with('success', 'Renewal canceled successfully.');
 }
     public function cancelRenewal(Request $request)

@@ -16,7 +16,7 @@
             $policyEndDate = $client->policy_end_date;
 
             if ($policyEndDate > $currentDate) {
-                echo "<p>You failed to pay your premium on time, thus resulting in a cancellation.</p>";
+                echo "<p>You failed to pay your premium on time or chosen to end your renewal at the end of the year, thus resulting in a cancellation.</p>";
             } else {
                 echo "<p>Your Policy has elapsed its allocated period.</p>";
             }

@@ -14,7 +14,7 @@
     <div class="col-md-12 mt-3">
     </div>
     @php
-    $clients= App\Models\Client::all();
+    $clients = App\Models\Client::paginate(5);
     $policies=App\Models\Policy::all();
     @endphp
     
@@ -101,8 +101,12 @@
 <div class="text-center">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">Add New Client</button>
             </div>
+            <div class="text-center">
+                {{ $clients->links() }}
+            </div>
         </div>
     </div>
+    
 
     <!-- Edit Policy Modal -->
     @if(isset($client))
