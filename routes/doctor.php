@@ -21,6 +21,7 @@ Route::prefix('doctor')->name('doctor.')->group(function(){
          Route::view('/','dashboard.doctor.home')->name('home');
          Route::view('/home','dashboard.doctor.home')->name('home');
          Route::view('/clients','dashboard.doctor.clients')->name('clients');
+         Route::view('/claims','dashboard.doctor.claims')->name('claims');
          Route::view('/payments','dashboard.doctor.payments')->name('payments');
          Route::post('logout',[DoctorController::class,'logout'])->name('logout');
     });

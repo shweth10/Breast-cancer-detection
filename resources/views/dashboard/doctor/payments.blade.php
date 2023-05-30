@@ -49,6 +49,7 @@
                 <p class="text-white">{{ $coverageInformation }}</p>
                 <p class="text-white">Last Payment Made: {{ $client->payment_date }}</p>
                 <p class="text-white">Next Payment Due: {{ $client->premium_due_date }}</p>
+                <p class="text-white">Policy End Date: {{ $client->policy_end_date }}</p>
               </div>
                         </li>
                 </div>
