@@ -1,5 +1,5 @@
 @extends('layouts.main-template')
-@section('title', isset($title) ? $title : 'Dashboard | Insurer')
+@section('title', isset($title) ? $title : 'Dashboard | Claims Staff')
 @section('content')
 @php
     $clients= App\Models\Client::all();

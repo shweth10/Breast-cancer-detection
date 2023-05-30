@@ -16,6 +16,8 @@ use Dompdf\Options;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PolicyExpiredNotification;
 use App\Mail\CancelRenewalNotification;
+use App\Models\Claim;
+
 
 class ClientController extends Controller
 {
@@ -45,9 +47,26 @@ public function notify(Client $client)
 
     return redirect()->back()->with('successful', 'Notification email sent.');
 }
-    public function renewPolicy($id)
+public function renewPolicy($id)
 {
     $client = Client::findOrFail($id);
+
+    // Check if the client is present in the claims table
+    $claim = Claim::where('client_id', $client->id)->first();
+
+    // Apply policy amount changes based on client presence and approval status in claims table
+    if ($claim) {
+        if ($claim->approval_status === 'approved') {
+            // Increase premium_amount by 10%
+            $client->premium_amount += $client->premium_amount * 0.1;
+        } else {
+            // Decrease premium_amount by 10%
+            $client->premium_amount -= $client->premium_amount * 0.1;
+        }
+    } else {
+        // Decrease premium_amount by 10%
+        $client->premium_amount -= $client->premium_amount * 0.1;
+    }
 
     // Add one more year to the policy_end_date
     $policyEndDate = Carbon::parse($client->policy_end_date);
@@ -60,6 +79,8 @@ public function notify(Client $client)
 
     return redirect()->back()->with('success', 'Policy has been renewed.');
 }
+
+
 
 
 

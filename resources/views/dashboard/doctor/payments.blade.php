@@ -1,5 +1,5 @@
 @extends('layouts.main-template')
-@section('title', isset($title) ? $title : 'Dashboard | Client')
+@section('title', isset($title) ? $title : 'Policy | Client')
 @section('content')
 
 <div class="relative max-w-7xl mx-auto">
@@ -62,8 +62,14 @@
 
         $current_date = date('Y-m-d');
         $due_date = date('Y-m-d', strtotime($client->premium_due_date . ' - 20 days'));
+        $end_date = $client->policy_end_date;
 
-        if ($current_date > $client->premium_due_date) {
+        if ($current_date > $end_date) {
+            $status = 'Expired';
+            $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
+            $buttonText = 'Expired';
+            $buttonClass = 'opacity-50 cursor-not-allowed';
+        } elseif ($current_date > $client->premium_due_date && $current_date <= $end_date) {
             $status = 'Expired';
             $class = 'm-2 inline-block rounded bg-danger py-1 px-2 text-sm font-semibold text-white';
             $buttonText = 'Expired';
@@ -79,6 +85,7 @@
             $buttonText = 'Paid';
             $buttonClass = 'opacity-50 cursor-not-allowed';
         }
+
     @endphp
 
     <span class="{{ $class }}">{{ $status }}</span>

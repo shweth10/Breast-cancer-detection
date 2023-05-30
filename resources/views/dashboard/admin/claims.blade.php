@@ -1,5 +1,5 @@
 @extends('layouts.main-template')
-@section('title', isset($title) ? $title : 'Dashboard | Insurer')
+@section('title', isset($title) ? $title : 'Claims | Claims Staff')
 @section('content')
 <div class="relative max-w-7xl mx-auto">
     <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
